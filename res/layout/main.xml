@@ -46,6 +46,13 @@
             android:layout_margin="10dip"
             android:onClick="getGBData"
             android:text="Go" />
+
+        <ProgressBar
+            android:id="@+id/gbDownloadProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 
