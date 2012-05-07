@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 
+import com.bryanmarty.greenbutton.database.TrackManager;
 import com.bryanmarty.greenbutton.tasks.GBDataDownloader;
 import com.bryanmarty.greenbutton.tasks.GBDataDownloaderListener;
 
@@ -19,13 +20,24 @@ public class GreenButtonProjectActivity extends Activity implements GBDataDownlo
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        TrackManager.initialize(this);
         
         txtGBData = (EditText)this.findViewById(R.id.txtGBDataResponse);
         btnGetGBData = (Button)this.findViewById(R.id.btnGetGBData);
         pbGBDownloadProgress = (ProgressBar)this.findViewById(R.id.gbDownloadProgress);
+        
+        
     }
     
-    public void getGBData(View view) {
+    @Override
+	protected void onDestroy() {
+		TrackManager.shutdown();
+		super.onDestroy();
+	}
+
+
+
+	public void getGBData(View view) {
     	GBDataDownloader gbDataDownloader = new GBDataDownloader(this);
     	EditText txtPin = (EditText)this.findViewById(R.id.txtPIN_Entry);
     	String pin = txtPin.getText().toString();
