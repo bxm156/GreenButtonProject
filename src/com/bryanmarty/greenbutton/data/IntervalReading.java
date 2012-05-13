@@ -27,5 +27,6 @@ public class IntervalReading {
 	}
 	private int value;
 	
-	
+	//TODO: add field for cost 
+	//	example cost: 	"842283" = $8.42, rounds up I believe
 }
