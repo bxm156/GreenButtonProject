@@ -8,6 +8,7 @@ import android.widget.*;
 import com.bryanmarty.greenbutton.database.TrackManager;
 import com.bryanmarty.greenbutton.tasks.GBDataDownloader;
 import com.bryanmarty.greenbutton.tasks.GBDataDownloaderListener;
+import com.bryanmarty.greenbutton.tasks.GBDataParser;
 
 public class GreenButtonProjectActivity extends Activity implements GBDataDownloaderListener {
 	
@@ -26,7 +27,7 @@ public class GreenButtonProjectActivity extends Activity implements GBDataDownlo
         btnGetGBData = (Button)this.findViewById(R.id.btnGetGBData);
         pbGBDownloadProgress = (ProgressBar)this.findViewById(R.id.gbDownloadProgress);
         
-        
+        GBDataParser gbParser = new GBDataParser("");
     }
     
     @Override
