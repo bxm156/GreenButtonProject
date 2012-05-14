@@ -1,6 +1,7 @@
 package com.bryanmarty.greenbutton.database;
 
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Future;
@@ -13,6 +14,7 @@ import com.bryanmarty.greenbutton.database.DatabaseManager;
 import com.bryanmarty.greenbutton.database.TrackRequest;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseUtils.InsertHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -89,6 +91,44 @@ public class TrackManager {
 					db.endTransaction();
 				}
 				return success;
+			}
+		};
+		request.setDatabase(dbManager.getDatabase());
+		return threadPool_.submit(request);
+	}
+	
+	public static Future<LinkedList<IntervalReading>> getReadingsSince(final Date beginDate) {
+		TrackRequest<LinkedList<IntervalReading>> request = new TrackRequest<LinkedList<IntervalReading>>() {
+			
+			@Override
+			public LinkedList<IntervalReading> call() throws Exception {
+				LinkedList<IntervalReading> readings = new LinkedList<IntervalReading>();
+				
+				SQLiteDatabase db = getDatabase();
+				
+				if(db == null) {
+					throw new SQLiteException("Database was null");
+				}
+				Cursor c = null;
+				try {
+					c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, "start > ?", new String[]{String.valueOf(beginDate.getTime())}, null, null, null);
+					
+					if (c.moveToFirst()) {
+						do {
+							IntervalReading r = new IntervalReading();
+							r.setStartTime(new Date(c.getInt(0)));
+							r.setDuration(c.getInt(1));
+							r.setValue(c.getInt(2));
+							r.setCost(c.getInt(3));
+							readings.add(r);
+						} while (c.moveToNext());
+					}
+				} catch (Exception e) {
+					
+				} finally {
+					c.close();
+				}
+				return readings;
 			}
 		};
 		request.setDatabase(dbManager.getDatabase());
