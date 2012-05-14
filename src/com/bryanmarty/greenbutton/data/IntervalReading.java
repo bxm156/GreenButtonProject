@@ -6,6 +6,8 @@ public class IntervalReading {
 	
 	private int duration; //Seconds
 	private Date startTime;
+	private int value;
+	private int cost;
 	
 	public int getDuration() {
 		return duration;
@@ -25,8 +27,13 @@ public class IntervalReading {
 	public void setValue(int value) {
 		this.value = value;
 	}
-	private int value;
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 	
-	//TODO: add field for cost 
 	//	example cost: 	"842283" = $8.42, rounds up I believe
+	public int getCost() {
+		return cost;
+	}
+
 }

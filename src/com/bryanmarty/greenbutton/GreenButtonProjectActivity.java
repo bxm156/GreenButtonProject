@@ -1,78 +1,33 @@
 package com.bryanmarty.greenbutton;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.bryanmarty.greenbutton.database.TrackManager;
-import com.bryanmarty.greenbutton.tasks.GBDataDownloader;
-import com.bryanmarty.greenbutton.tasks.GBDataDownloaderListener;
-import com.bryanmarty.greenbutton.tasks.GBDataParser;
 
-public class GreenButtonProjectActivity extends Activity implements GBDataDownloaderListener {
+public class GreenButtonProjectActivity extends Activity {
 	
-	private EditText txtGBData;
-	private Button btnGetGBData;
-	private ProgressBar pbGBDownloadProgress;
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
 	
-	/** Called when the activity is first created. */	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.pin);
-        TrackManager.initialize(this);
-        
-        //txtGBData = (EditText)this.findViewById(R.id.txtGBDataResponse);
-        btnGetGBData = (Button)this.findViewById(R.id.btnGetGBData);
-        pbGBDownloadProgress = (ProgressBar)this.findViewById(R.id.gbDownloadProgress);
-        
-        GBDataParser gbParser = new GBDataParser("");
-    }
-    
-    @Override
-	protected void onDestroy() {
-		TrackManager.shutdown();
-		super.onDestroy();
+	    setContentView(R.layout.home);
 	}
 
-
-
-	public void getGBData(View view) {
-    	GBDataDownloader gbDataDownloader = new GBDataDownloader(this);
-    	EditText txtPin = (EditText)this.findViewById(R.id.txtPIN_Entry);
-    	String pin = txtPin.getText().toString();
-    	if(pin.contentEquals("") || pin.length() != 7) {
-    		Toast.makeText(getApplicationContext(), "Invalid PIN, please enter again.", Toast.LENGTH_SHORT).show();
-    		return;
-    	}
-    	
-    	gbDataDownloader.execute(pin);
-    	
-    }
-
-	@Override
-	public void onPreExecute() {
-		btnGetGBData.setEnabled(false);
-		pbGBDownloadProgress.setVisibility(View.VISIBLE);
-		
+	public void onClick_PIN(View v)
+	{
+		Intent intent = new Intent();
+	     intent.setClass(this,GreenButtonPINActivity.class);
+	     startActivity(intent);
 	}
-
-	@Override
-	public void onProgressUpdate(Integer... progress) {
-
+	
+	public void onClick_Chart(View v) {
+		Intent intent = new Intent();
+		intent.setClass(this, GreenButtonGraphActivity.class);
+		startActivity(intent);
 	}
-
-	@Override
-	public void onPostExecute(String result) {
-    	btnGetGBData.setEnabled(true);
-    	pbGBDownloadProgress.setVisibility(View.GONE);
-    	
-    	//TODO: This will be removed, but when testing with a real example file, setting the contents of the 
-    	// text box to all the data causes an out of memory error in Android
-    	//txtGBData.setText(result);
-	}
+	
+	
 }

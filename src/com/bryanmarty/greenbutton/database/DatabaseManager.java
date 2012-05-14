@@ -85,7 +85,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		try {
-			String sql = "CREATE TABLE gbdata (start integer NOT NULL, duration integer NOT NULL, value blob NOT NULL );";
+			String sql = "CREATE TABLE gbdata (start integer NOT NULL, duration integer NOT NULL, value blob NOT NULL, cost integer NULL);";
 			db.execSQL(sql);
 		} catch (SQLException e) {
 			Log.e("SQLite","Failed to create database");

@@ -91,6 +91,7 @@
                 android:id="@+id/btnChart_Launcher"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
+                android:onClick="onClick_Chart"
                 android:background="@drawable/app_button_bg_xparent"
                 android:scaleType="fitStart"
                 android:src="@drawable/home_buttons_chart" />

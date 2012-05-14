@@ -80,6 +80,7 @@ public class TrackManager {
 						ihelp.bind(1, reading.getStartTime().getTime());
 						ihelp.bind(2, reading.getDuration());
 						ihelp.bind(3,reading.getValue());
+						ihelp.bind(4,reading.getCost());
 						ihelp.execute();
 					}
 					db.setTransactionSuccessful();
