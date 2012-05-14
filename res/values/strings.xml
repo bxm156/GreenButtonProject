@@ -4,5 +4,6 @@
     <string name="hello">Hello World, GreenButtonProjectActivity!</string>
     <string name="app_name">GreenButtonProject</string>
     <string name="copyright">\u00A9 2012 Budget It Yourself</string>
+    <string name="go">Go</string>
 
 </resources>

@@ -26,7 +26,7 @@
         android:paddingTop="15dp"
         android:text="ENTER PIN"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <EditText
         android:id="@+id/txtPIN_Entry"
         android:layout_width="fill_parent"
@@ -34,7 +34,9 @@
         android:layout_above="@+id/btnGetGBData"
         android:layout_below="@+id/txtEnterPIN"
         android:layout_centerHorizontal="true"
-        android:layout_margin="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:background="@drawable/pin_inputarea_hdpi"
         android:capitalize="none"
         android:ems="10"
@@ -46,69 +48,6 @@
 
         <requestFocus />
     </EditText>
-
-    <TableLayout
-        android:id="@+id/tblMenuBar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:padding="5dp"
-        android:stretchColumns="*" >
-
-        <TableRow
-            android:id="@+id/TableRow1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="fill_horizontal"
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@+id/btnHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/app_button_bg_xparent"
-                android:src="@drawable/app_button_home" />
-
-            <ImageButton
-                android:id="@+id/btnBudget"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/app_button_bg_xparent"
-                android:src="@drawable/app_button_budget" />
-
-            <ImageButton
-                android:id="@+id/btnChart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/app_button_bg_xparent"
-                android:src="@drawable/app_button_chart" />
-
-            <ImageButton
-                android:id="@+id/btnSettings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/app_button_bg_xparent"
-                android:src="@drawable/app_button_settings" />
-
-            <ImageButton
-                android:id="@+id/btnWeb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/app_button_bg_xparent"
-                android:src="@drawable/app_button_web" />
-        </TableRow>
-    </TableLayout>
-
-    <Button
-        android:id="@+id/btnGetGBData"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tblMenuBar"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dip"
-        android:onClick="getGBData"
-        android:text="Go" />
 
     <ProgressBar
         android:id="@+id/gbDownloadProgress"
@@ -116,7 +55,94 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtPIN_Entry"
         android:layout_margin="10dp"
-        android:layout_toRightOf="@+id/btnGetGBData"
-        android:visibility="visible" />
+        android:visibility="invisible" />
+
+    <FrameLayout
+        android:id="@+id/frmMenuBar"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" >
+
+        <SlidingDrawer
+            android:id="@+id/sdMenuBar"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:content="@+id/content"
+            android:handle="@+id/handle"
+            android:topOffset="0dp" >
+
+            <Button
+                android:id="@+id/handle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/slider_handle_hdpi" />
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/slider_bg_hdpi" >
+
+                <TableLayout
+                    android:id="@+id/tblMenuBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:stretchColumns="*" >
+
+                    <TableRow
+                        android:id="@+id/trMenuBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent" >
+
+                        <ImageButton
+                            android:id="@+id/btnHome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/app_button_bg_xparent"
+                            android:src="@drawable/app_button_home" />
+
+                        <ImageButton
+                            android:id="@+id/btnBudget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/app_button_bg_xparent"
+                            android:src="@drawable/app_button_budget" />
+
+                        <ImageButton
+                            android:id="@+id/btnChart"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/app_button_bg_xparent"
+                            android:src="@drawable/app_button_chart" />
+
+                        <ImageButton
+                            android:id="@+id/btnSettings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/app_button_bg_xparent"
+                            android:src="@drawable/app_button_settings" />
+
+                        <ImageButton
+                            android:id="@+id/btnWeb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/app_button_bg_xparent"
+                            android:src="@drawable/app_button_web" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </SlidingDrawer>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btnGetGBData"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/frmMenuBar"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dip"
+        android:onClick="getGBData"
+        android:text="@string/go" />
 
 </RelativeLayout>
