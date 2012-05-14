@@ -23,10 +23,10 @@ public class GreenButtonProjectActivity extends Activity implements GBDataDownlo
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.pin);
         TrackManager.initialize(this);
         
-        txtGBData = (EditText)this.findViewById(R.id.txtGBDataResponse);
+        //txtGBData = (EditText)this.findViewById(R.id.txtGBDataResponse);
         btnGetGBData = (Button)this.findViewById(R.id.btnGetGBData);
         pbGBDownloadProgress = (ProgressBar)this.findViewById(R.id.gbDownloadProgress);
         
@@ -73,6 +73,6 @@ public class GreenButtonProjectActivity extends Activity implements GBDataDownlo
     	
     	//TODO: This will be removed, but when testing with a real example file, setting the contents of the 
     	// text box to all the data causes an out of memory error in Android
-    	txtGBData.setText(result);
+    	//txtGBData.setText(result);
 	}
 }

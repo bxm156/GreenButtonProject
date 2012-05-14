@@ -1,69 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name" />
-
-    <LinearLayout
-        android:id="@+id/ll_PIN_Entry"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:maxLength="7"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_margin="10dip"
-            android:gravity="center_vertical"
-            android:text="PIN:"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/txtPIN_Entry"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dip"
-            android:layout_marginLeft="10dip"
-            android:capitalize="none"
-            android:ems="10"
-            android:inputType="textNoSuggestions|textShortMessage"
-            android:singleLine="true"
-            android:textSize="25sp" >
-
-            <requestFocus />
-        </EditText>
-
-        <Button
-            android:id="@+id/btnGetGBData"
-            android:layout_width="50dp"
-            android:layout_height="fill_parent"
-            android:layout_margin="10dip"
-            android:onClick="getGBData"
-            android:text="Go" />
-
-        <ProgressBar
-            android:id="@+id/gbDownloadProgress"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_margin="10dp"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/txtGBDataResponse"
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:layout_margin="10dp"
-        android:ems="10"
-        android:gravity="top"
-        android:inputType="textMultiLine"
-        android:singleLine="false" />
-
-</LinearLayout>
