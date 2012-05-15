@@ -18,6 +18,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils.InsertHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 public class TrackManager {
 	
@@ -47,6 +48,7 @@ public class TrackManager {
 	}
 	
 	public synchronized static void shutdown() {
+		Log.i("Thread Pool","Shutting down Thread Pool");
 		if(!initialized) {
 			return;
 		}
@@ -89,6 +91,7 @@ public class TrackManager {
 					success = true;
 				} finally {
 					db.endTransaction();
+					ihelp.close();
 				}
 				return success;
 			}
@@ -111,12 +114,53 @@ public class TrackManager {
 				}
 				Cursor c = null;
 				try {
-					c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, "start > ?", new String[]{String.valueOf(beginDate.getTime())}, null, null, null);
+					c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, "start > ?", new String[]{String.valueOf(beginDate.getTime()/1000L)}, null, null, null);
+					//c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, null, null, null, null, null);
+
+					if (c.moveToFirst()) {
+						do {
+							IntervalReading r = new IntervalReading();
+							r.setStartTime(new Date(c.getInt(0)*1000L));
+							r.setDuration(c.getInt(1));
+							r.setValue(c.getInt(2));
+							r.setCost(c.getInt(3));
+							readings.add(r);
+						} while (c.moveToNext());
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if(c != null) {
+						c.close();
+					}
+				}
+				return readings;
+			}
+		};
+		request.setDatabase(dbManager.getDatabase());
+		return threadPool_.submit(request);
+	}
+	
+	public static Future<LinkedList<IntervalReading>> getReadingsBetween(final Date beginDate, final Date endDate) {
+		TrackRequest<LinkedList<IntervalReading>> request = new TrackRequest<LinkedList<IntervalReading>>() {
+			
+			@Override
+			public LinkedList<IntervalReading> call() throws Exception {
+				LinkedList<IntervalReading> readings = new LinkedList<IntervalReading>();
+				
+				SQLiteDatabase db = getDatabase();
+				
+				if(db == null) {
+					throw new SQLiteException("Database was null");
+				}
+				Cursor c = null;
+				try {
+					c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, "start > ? AND start < ?", new String[]{String.valueOf(beginDate.getTime()/1000L),String.valueOf(endDate.getTime()/1000L)}, null, null, null);
 					
 					if (c.moveToFirst()) {
 						do {
 							IntervalReading r = new IntervalReading();
-							r.setStartTime(new Date(c.getInt(0)));
+							r.setStartTime(new Date(c.getInt(0)*1000L));
 							r.setDuration(c.getInt(1));
 							r.setValue(c.getInt(2));
 							r.setCost(c.getInt(3));
@@ -126,7 +170,9 @@ public class TrackManager {
 				} catch (Exception e) {
 					
 				} finally {
-					c.close();
+					if(c != null) {
+						c.close();
+					}
 				}
 				return readings;
 			}

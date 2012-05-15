@@ -33,14 +33,6 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
         pbGBDownloadProgress = (ProgressBar)this.findViewById(R.id.gbDownloadProgress);
     }
     
-    @Override
-	protected void onDestroy() {
-		TrackManager.shutdown();
-		super.onDestroy();
-	}
-
-
-
 	public void getGBData(View view) {
     	GBDataDownloader gbDataDownloader = new GBDataDownloader(this,this);
     	EditText txtPin = (EditText)this.findViewById(R.id.txtPIN_Entry);

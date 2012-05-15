@@ -31,5 +31,12 @@ public class GreenButtonProjectActivity extends Activity {
 		startActivity(intent);
 	}
 	
+    @Override
+	protected void onDestroy() {
+		TrackManager.shutdown();
+		super.onDestroy();
+	}
+
+	
 	
 }

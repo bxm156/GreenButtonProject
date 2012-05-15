@@ -53,12 +53,14 @@ public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
 				out.write(gbData + ln);
 			}
 			out.close();
-			Log.i("status","complete");
 			GBDataParser gbParser = new GBDataParser(tmp);
 			gbParser.parseGBData();
 			while(!gbParser.isDoneParsing()) { }
 			tmp.delete();
 			LinkedList<IntervalReading> list = gbParser.getIntervalReadingList();
+			if(list.size() <= 0) {
+				return -1;
+			}
 			Future<Boolean> fResult = TrackManager.addReadings(list);
 			try {
 				Boolean result = fResult.get();
