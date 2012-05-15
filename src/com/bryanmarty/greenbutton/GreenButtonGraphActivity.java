@@ -51,13 +51,11 @@ public class GreenButtonGraphActivity extends Activity {
 		
 		//Pull all readings from the beginning of the month
 		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.MONTH,12);
 		cal.set(Calendar.DATE, 1);
 		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
-		cal.set(Calendar.YEAR, 2011);
 		
 		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsSince(cal.getTime());
 		try {
