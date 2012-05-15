@@ -1,5 +1,7 @@
 package com.bryanmarty.greenbutton;
 
+import com.bryanmarty.greenbutton.database.TrackManager;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +14,8 @@ public class GreenButtonProjectActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	
 	    setContentView(R.layout.home);
+	    TrackManager.initialize(this);
 	}
 
 	public void onClick_PIN(View v)

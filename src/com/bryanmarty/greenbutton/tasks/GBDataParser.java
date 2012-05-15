@@ -1,5 +1,7 @@
 package com.bryanmarty.greenbutton.tasks;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.sql.Date;
@@ -16,7 +18,7 @@ public class GBDataParser extends DefaultHandler {
 	private LinkedList<IntervalReading> _intervalReadingList;
 	private IntervalReading _intervalReading;
 	
-	private String _gbData;
+	private File _gbData;
 	private SAXParser _sp;
 	
 	private boolean _isIntervalReading;
@@ -28,9 +30,9 @@ public class GBDataParser extends DefaultHandler {
 	
 	private boolean _isDoneParsing;
 	
-	public GBDataParser(String gbData)
+	public GBDataParser(File tmp)
 	{
-		_gbData = gbData;	
+		_gbData = tmp;	
 		_intervalReadingList = new LinkedList<IntervalReading>();
 		_isDoneParsing = false;
 	}
@@ -41,7 +43,7 @@ public class GBDataParser extends DefaultHandler {
 		try 
 		{
 			_sp = spf.newSAXParser();
-			_sp.parse(new InputSource(new StringReader(_gbData)), this);
+			_sp.parse(new InputSource(new FileReader(_gbData)), this);
 		
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block

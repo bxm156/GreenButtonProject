@@ -7,6 +7,7 @@ import com.bryanmarty.greenbutton.tasks.GBDataParser;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,8 +31,6 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
         //txtGBData = (EditText)this.findViewById(R.id.txtGBDataResponse);
         btnGetGBData = (Button)this.findViewById(R.id.btnGetGBData);
         pbGBDownloadProgress = (ProgressBar)this.findViewById(R.id.gbDownloadProgress);
-        
-        GBDataParser gbParser = new GBDataParser("");
     }
     
     @Override
@@ -43,7 +42,7 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
 
 
 	public void getGBData(View view) {
-    	GBDataDownloader gbDataDownloader = new GBDataDownloader(this);
+    	GBDataDownloader gbDataDownloader = new GBDataDownloader(this,this);
     	EditText txtPin = (EditText)this.findViewById(R.id.txtPIN_Entry);
     	String pin = txtPin.getText().toString();
     	if(pin.contentEquals("") || pin.length() != 7) {
@@ -68,7 +67,8 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
 	}
 
 	@Override
-	public void onPostExecute(String result) {
+	public void onPostExecute(Integer result) {
+		Log.i("Inserted Records: ",String.valueOf(result));
     	btnGetGBData.setEnabled(true);
     	pbGBDownloadProgress.setVisibility(View.GONE);
     	
