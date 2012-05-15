@@ -129,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="Daily"
+                android:onClick="graphDaily"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -136,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Monthly"
+                android:onClick="graphMonthly"
                 android:textSize="20sp" />
 
         </RadioGroup>

@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 
 
@@ -43,12 +44,19 @@ public class GreenButtonGraphActivity extends Activity {
 
 	@Override
 	protected void onStart() {
-		prepareData();
 		showGraph(prepareDaily());
 		super.onStart();
 	}
+	
+	public void graphDaily(View v) {
+		showGraph(prepareDaily());
+	}
+	
+	public void graphMonthly(View v) {
+		showGraph(prepareMonthly());
+	}
 
-	protected void prepareData() {
+	public void prepareDataDaily() {
 		LinkedList<IntervalReading> result = new LinkedList<IntervalReading>();
 		
 		//Pull all readings from the beginning of the month
@@ -68,8 +76,30 @@ public class GreenButtonGraphActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
+	protected void prepareDataMonthly() {
+		LinkedList<IntervalReading> result = new LinkedList<IntervalReading>();
+		
+		//Pull all readings from the beginning of the month
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.MONTH, 1);
+		cal.set(Calendar.DATE, 1);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		cal.set(Calendar.YEAR, 2011);
+		
+		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsSince(cal.getTime());
+		try {
+			result = future.get();
+			cached_ = result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	protected TreeMap<Integer,DataPoint> prepareDaily() {
+		prepareDataDaily();
 		TreeMap<Integer,DataPoint> map = new TreeMap<Integer,DataPoint>();
 		for(IntervalReading r : cached_) {
 			Date startDate = r.getStartTime();
@@ -84,6 +114,27 @@ public class GreenButtonGraphActivity extends Activity {
 				d.cost = r.getCost();
 				d.value = r.getValue();
 				map.put(day, d);
+			}
+		}
+		return map;
+	}
+	
+	protected TreeMap<Integer,DataPoint> prepareMonthly() {
+		prepareDataMonthly();
+		TreeMap<Integer,DataPoint> map = new TreeMap<Integer,DataPoint>();
+		for (IntervalReading r: cached_) {
+			Date startDate = r.getStartTime();
+			int month = startDate.getMonth();
+			DataPoint d = map.get(month);
+			if( d != null) {
+				d.cost += r.getCost();
+				d.value += r.getValue();
+			} else {
+				d = new DataPoint();
+				d.x = month;
+				d.cost = r.getCost();
+				d.value = r.getValue();
+				map.put(month, d);
 			}
 		}
 		return map;
@@ -120,6 +171,7 @@ public class GreenButtonGraphActivity extends Activity {
 		//graphView.addSeries(costSeries);
 		graphView.addSeries(valueSeries);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graphLayout);
+		layout.removeAllViews();
 		layout.addView(graphView);
 	}
 
