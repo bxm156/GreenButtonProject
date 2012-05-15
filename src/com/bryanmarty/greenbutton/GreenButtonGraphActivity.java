@@ -23,17 +23,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-
+import android.widget.Spinner;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.AdapterView;
 
 public class GreenButtonGraphActivity extends Activity {
 	
 	LinkedList<IntervalReading> cached_ = null;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.graph);
 	}
+	
 	
 	@Override
 	protected void onNewIntent(Intent intent) {

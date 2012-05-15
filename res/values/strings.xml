@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, GreenButtonProjectActivity!</string>
-    <string name="app_name">GreenButtonProject</string>
+    <string name="app_name">BIY</string>
     <string name="copyright">\u00A9 2012 Budget It Yourself</string>
     <string name="go">Go</string>
     <string-array name="strMonths">
@@ -18,6 +18,10 @@
         <item>October</item>
         <item>November</item>
         <item>December</item>
+    </string-array>
+    <string-array name="strYears">
+        <item >2011</item>
+        <item >2012</item>
     </string-array>
 
 </resources>

@@ -157,14 +157,15 @@
                 android:layout_alignRight="@+id/graphLayout"
                 android:layout_alignTop="@+id/rdTimespans"
                 android:entries="@array/strMonths" />
-
+
             <Spinner
                 android:id="@+id/cbYears"
                 style="@style/SpinnerAsEditText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/cbMonths"
-                android:layout_below="@+id/cbMonths" />
+                android:layout_below="@+id/cbMonths"
+                android:entries="@array/strYears" />
 
         </LinearLayout>
 
