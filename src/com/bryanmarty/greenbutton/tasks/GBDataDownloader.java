@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import com.bryanmarty.greenbutton.database.TrackManager;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
 
 public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
@@ -39,12 +41,12 @@ public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
 		StringBuffer gbBuffer = null;
 
 		try {
-			url = new URL(DebugSettings.SERVER + "get/" + pin[0]);
+			/*url = new URL(DebugSettings.SERVER + "get/" + pin[0]);
 			urlConnection = (HttpURLConnection) url.openConnection();
 
 			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 			BufferedReader gbReader = new BufferedReader(new InputStreamReader(in));
-			File tmp = File.createTempFile("gbdata",".xml",context_.getCacheDir());
+			File tmp = File.createTempFile("gbdata",".xml",context_.getCacheDir());			
 			BufferedWriter out = new BufferedWriter(new FileWriter(tmp));
 			
 			gbBuffer = new StringBuffer();
@@ -52,11 +54,15 @@ public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
 			while ((gbData = gbReader.readLine()) != null) {
 				out.write(gbData + ln);
 			}
-			out.close();
-			GBDataParser gbParser = new GBDataParser(tmp);
+			out.close();*/
+			//GBDataParser gbParser = new GBDataParser(tmp);
+			File f = new File(Environment.getExternalStorageDirectory()+"/gbdata.xml");
+			GBDataParser gbParser = new GBDataParser(f);
 			gbParser.parseGBData();
 			while(!gbParser.isDoneParsing()) { }
-			tmp.delete();
+			
+			//tmp.delete();
+			
 			LinkedList<IntervalReading> list = gbParser.getIntervalReadingList();
 			if(list.size() <= 0) {
 				return -1;
@@ -73,12 +79,15 @@ public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
 				
 			}
 		
-		} catch (IOException ioe) {
+		} 
+		/*catch (IOException ioe) 
+		{
 			// we might consider having a special failure response instead of
 			// catching the exception
 			// Toast.makeText(getApplicationContext(),
 			// "Invalid PIN, please enter again.", Toast.LENGTH_SHORT).show();
-		} finally {
+		}*/
+		 finally {
 			if (urlConnection != null) {
 				urlConnection.disconnect();
 			}

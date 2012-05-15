@@ -31,6 +31,12 @@ public class GreenButtonProjectActivity extends Activity {
 		startActivity(intent);
 	}
 	
+	public void onClick_Budget(View v) {
+		Intent intent = new Intent();
+		intent.setClass(this, GreenButtonBudgetActivity.class);
+		startActivity(intent);
+	}
+	
     @Override
 	protected void onDestroy() {
 		TrackManager.shutdown();

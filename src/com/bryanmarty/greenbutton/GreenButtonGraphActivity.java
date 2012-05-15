@@ -56,6 +56,7 @@ public class GreenButtonGraphActivity extends Activity {
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
+		cal.set(Calendar.YEAR, 2011);
 		
 		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsSince(cal.getTime());
 		try {
