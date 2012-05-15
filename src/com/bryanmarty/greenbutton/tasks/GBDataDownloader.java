@@ -4,8 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,14 +14,11 @@ import java.util.LinkedList;
 import java.util.concurrent.Future;
 
 import com.bryanmarty.greenbutton.DebugSettings;
-import com.bryanmarty.greenbutton.GreenButtonProjectActivity;
 import com.bryanmarty.greenbutton.data.IntervalReading;
 import com.bryanmarty.greenbutton.database.TrackManager;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.util.Log;
 
 public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
 	private final GBDataDownloaderListener listener_;
@@ -38,10 +33,9 @@ public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
 		URL url;
 		HttpURLConnection urlConnection = null;
 		String gbData = "";
-		StringBuffer gbBuffer = null;
 
 		try {
-			/*url = new URL(DebugSettings.SERVER + "get/" + pin[0]);
+			url = new URL(DebugSettings.SERVER + "get/" + pin[0]);
 			urlConnection = (HttpURLConnection) url.openConnection();
 
 			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -49,19 +43,16 @@ public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
 			File tmp = File.createTempFile("gbdata",".xml",context_.getCacheDir());			
 			BufferedWriter out = new BufferedWriter(new FileWriter(tmp));
 			
-			gbBuffer = new StringBuffer();
 			String ln = System.getProperty("line.separator");
 			while ((gbData = gbReader.readLine()) != null) {
 				out.write(gbData + ln);
 			}
-			out.close();*/
-			//GBDataParser gbParser = new GBDataParser(tmp);
-			File f = new File(Environment.getExternalStorageDirectory()+"/gbdata.xml");
-			GBDataParser gbParser = new GBDataParser(f);
+			out.close();
+			GBDataParser gbParser = new GBDataParser(tmp);
 			gbParser.parseGBData();
 			while(!gbParser.isDoneParsing()) { }
 			
-			//tmp.delete();
+			tmp.delete();
 			
 			LinkedList<IntervalReading> list = gbParser.getIntervalReadingList();
 			if(list.size() <= 0) {
@@ -80,13 +71,13 @@ public class GBDataDownloader extends AsyncTask<String, Integer, Integer> {
 			}
 		
 		} 
-		/*catch (IOException ioe) 
+		catch (IOException ioe) 
 		{
 			// we might consider having a special failure response instead of
 			// catching the exception
 			// Toast.makeText(getApplicationContext(),
 			// "Invalid PIN, please enter again.", Toast.LENGTH_SHORT).show();
-		}*/
+		}
 		 finally {
 			if (urlConnection != null) {
 				urlConnection.disconnect();
