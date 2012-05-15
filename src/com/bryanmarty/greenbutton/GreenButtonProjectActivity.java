@@ -4,6 +4,7 @@ import com.bryanmarty.greenbutton.database.TrackManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -37,6 +38,12 @@ public class GreenButtonProjectActivity extends Activity {
 		startActivity(intent);
 	}
 	
+	public void onClick_Web(View v) {
+		Uri uriURL = Uri.parse("http://greenbutton.case.edu");
+		Intent intent = new Intent(Intent.ACTION_VIEW, uriURL);
+		startActivity(intent);
+		
+	}
     @Override
 	protected void onDestroy() {
 		TrackManager.shutdown();

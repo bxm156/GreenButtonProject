@@ -5,5 +5,19 @@
     <string name="app_name">GreenButtonProject</string>
     <string name="copyright">\u00A9 2012 Budget It Yourself</string>
     <string name="go">Go</string>
+    <string-array name="strMonths">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
 
 </resources>

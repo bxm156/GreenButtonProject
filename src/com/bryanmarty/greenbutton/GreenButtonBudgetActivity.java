@@ -15,4 +15,9 @@ public class GreenButtonBudgetActivity extends Activity {
 	    setContentView(R.layout.budget);
 	}
 
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+	}
 }

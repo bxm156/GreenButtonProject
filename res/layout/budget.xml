@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/app_background_hdpi" >
-
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
     <FrameLayout
         android:id="@+id/frmMenuBar"
         android:layout_width="fill_parent"
-        android:layout_height="75dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true" >
 
@@ -43,7 +43,8 @@
                 <TableLayout
                     android:id="@+id/tblMenuBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
                     android:stretchColumns="*" >
 
                     <TableRow
@@ -54,35 +55,35 @@
                         <ImageButton
                             android:id="@+id/btnHome"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_home" />
 
                         <ImageButton
                             android:id="@+id/btnBudget"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_budget" />
 
                         <ImageButton
                             android:id="@+id/btnChart"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_chart" />
 
                         <ImageButton
                             android:id="@+id/btnSettings"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_settings" />
 
                         <ImageButton
                             android:id="@+id/btnWeb"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_web" />
                     </TableRow>
@@ -90,5 +91,94 @@
             </LinearLayout>
         </SlidingDrawer>
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imMeter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/budget_meter_5_hdpi" />
+
+    <LinearLayout
+        android:id="@+id/llTxtParentContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imMeter"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="15dp" >
+
+        <LinearLayout
+            android:id="@+id/llTxtStatic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/imageView1"
+                android:layout_below="@+id/imMeter"
+                android:text="Days Remaining:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView1"
+                android:layout_below="@+id/textView1"
+                android:text="Usage (Current):"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_below="@+id/textView2"
+                android:text="Usage (Previous)"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llTxtDynamic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtDaysRemaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imMeter"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@+id/textView3"
+                android:text="31"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/txtUsageCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textView3"
+                android:layout_alignLeft="@+id/txtDaysRemaining"
+                android:text="10"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/txtUsagePrevious"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView3"
+                android:layout_alignBottom="@+id/textView3"
+                android:layout_alignLeft="@+id/txtUsageCurrent"
+                android:text="10"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

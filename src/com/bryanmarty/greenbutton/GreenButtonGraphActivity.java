@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 import com.bryanmarty.greenbutton.data.DataPoint;
 import com.bryanmarty.greenbutton.data.IntervalReading;
 import com.bryanmarty.greenbutton.database.TrackManager;
+import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewSeries;
@@ -17,6 +18,7 @@ import com.jjoe64.graphview.LineGraphView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
@@ -108,11 +110,14 @@ public class GreenButtonGraphActivity extends Activity {
 		}
 		
 		// init example series data
-		GraphViewSeries valueSeries = new GraphViewSeries(valuePoints);
+		GraphViewSeries valueSeries = new GraphViewSeries("Energy Usage History", Color.WHITE, valuePoints);
 		GraphViewSeries costSeries = new GraphViewSeries(costPoints);
 		
-		GraphView graphView = new LineGraphView(this, "GraphViewDemo");
-		graphView.addSeries(costSeries);
+		GraphView graphView = new BarGraphView(this, "");
+		graphView.setViewPort(0, 10);
+		graphView.setScrollable(true);
+		
+		//graphView.addSeries(costSeries);
 		graphView.addSeries(valueSeries);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graphLayout);
 		layout.addView(graphView);
