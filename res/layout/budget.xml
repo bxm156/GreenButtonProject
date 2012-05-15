@@ -135,16 +135,17 @@
                 android:text="Usage (Current):"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="20sp" />
-
+
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/textView2"
                 android:layout_below="@+id/textView2"
-                android:text="Usage (Previous)"
+                android:text="Usage (Previous):"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
         <LinearLayout
