@@ -91,24 +91,25 @@
             </LinearLayout>
         </SlidingDrawer>
     </FrameLayout>
-
+
     <ImageView
         android:id="@+id/imMeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/llTxtParentContainer"
         android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:src="@drawable/budget_meter_5_hdpi" />
-
+
     <LinearLayout
         android:id="@+id/llTxtParentContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imMeter"
+        android:layout_above="@+id/frmMenuBar"
         android:layout_centerHorizontal="true"
-        android:layout_margin="15dp" >
-
+        android:layout_margin="10dp" >
+
         <LinearLayout
             android:id="@+id/llTxtStatic"
             android:layout_width="wrap_content"
@@ -122,7 +123,8 @@
                 android:layout_alignLeft="@+id/imageView1"
                 android:layout_below="@+id/imMeter"
                 android:text="Days Remaining:"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -131,7 +133,8 @@
                 android:layout_alignLeft="@+id/textView1"
                 android:layout_below="@+id/textView1"
                 android:text="Usage (Current):"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -140,7 +143,8 @@
                 android:layout_alignLeft="@+id/textView2"
                 android:layout_below="@+id/textView2"
                 android:text="Usage (Previous)"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -149,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/txtDaysRemaining"
                 android:layout_width="wrap_content"
@@ -158,7 +162,8 @@
                 android:layout_marginLeft="0dp"
                 android:layout_toRightOf="@+id/textView3"
                 android:text="31"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtUsageCurrent"
@@ -167,7 +172,8 @@
                 android:layout_above="@+id/textView3"
                 android:layout_alignLeft="@+id/txtDaysRemaining"
                 android:text="10"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtUsagePrevious"
@@ -177,8 +183,10 @@
                 android:layout_alignBottom="@+id/textView3"
                 android:layout_alignLeft="@+id/txtUsageCurrent"
                 android:text="10"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20sp" />
         </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
