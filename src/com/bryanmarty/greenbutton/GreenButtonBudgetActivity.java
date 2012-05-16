@@ -23,6 +23,7 @@ public class GreenButtonBudgetActivity extends Activity {
 	    setContentView(R.layout.budget);
 	    
 	    setUpDate();
+	    setUpUsage();
 	}
 
 	@Override
@@ -41,9 +42,11 @@ public class GreenButtonBudgetActivity extends Activity {
 		txtDaysRemaining.setText("" + daysLeft);
 	}
 	
-	protected void setUpUsageCurrent()
+	protected void setUpUsage()
 	{
 		LinkedList<IntervalReading> result = new LinkedList<IntervalReading>();
+		LinkedList<IntervalReading> result2 = new LinkedList<IntervalReading>();
+		
 		
 		Calendar c = Calendar.getInstance();
 		c.roll(Calendar.MONTH, -1); // last month
@@ -78,6 +81,23 @@ public class GreenButtonBudgetActivity extends Activity {
 		Date now = c2.getTime();
 		
 		Future<LinkedList<IntervalReading>> future2 = TrackManager.getReadingsSince(now);
+		try {
+			result2 = future.get();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int usageCurrent = 0;
+		for(IntervalReading r : result2 )
+		{
+			usageCurrent += r.getValue();
+		}
+		
+		TextView txtUsageCurrent = (TextView)this.findViewById(R.id.txtUsageCurrent);
+		txtUsageCurrent.setText("" + (int)((double)usageCurrent / 1000.0));
+		
+		TextView txtUsagePrevious = (TextView)this.findViewById(R.id.txtUsagePrevious);
+		txtUsagePrevious.setText("" + (int)((double)usagePrevious / 1000.0));
+				
 	}
 	
 	protected void setUpUsagePrevious()
