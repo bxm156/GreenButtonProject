@@ -18,7 +18,8 @@
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" >
+        android:layout_alignParentLeft="true"
+        android:visibility="gone" >
 
         <SlidingDrawer
             android:id="@+id/sdMenuBar"
@@ -101,16 +102,16 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:src="@drawable/budget_meter_5_hdpi" />
-
+
     <LinearLayout
         android:id="@+id/llTxtParentContainer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/frmMenuBar"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:gravity="center_horizontal" >
-
+
         <LinearLayout
             android:id="@+id/llTxtStatic"
             android:layout_width="fill_parent"
@@ -138,7 +139,6 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="25sp" />
         </LinearLayout>
-
     </LinearLayout>
 
 </RelativeLayout>

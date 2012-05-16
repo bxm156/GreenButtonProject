@@ -26,13 +26,14 @@
         android:orientation="vertical" >
 
     </LinearLayout>
-
+
     <FrameLayout
         android:id="@+id/frmMenuBar"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" >
+        android:layout_alignParentLeft="true"
+        android:visibility="gone" >
 
         <SlidingDrawer
             android:id="@+id/sdMenuBar"
@@ -41,7 +42,7 @@
             android:content="@+id/content"
             android:handle="@+id/handle"
             android:topOffset="0dp" >
-
+
             <Button
                 android:id="@+id/handle"
                 android:layout_width="wrap_content"
@@ -53,14 +54,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="@drawable/slider_bg_hdpi" >
-
+
                 <TableLayout
                     android:id="@+id/tblMenuBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
                     android:stretchColumns="*" >
-
+
                     <TableRow
                         android:id="@+id/trMenuBar"
                         android:layout_width="wrap_content"
@@ -101,7 +102,6 @@
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_web" />
                     </TableRow>
-
                 </TableLayout>
             </LinearLayout>
         </SlidingDrawer>
@@ -111,9 +111,9 @@
         android:id="@+id/llOptionsParent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/frmMenuBar"
-        android:layout_alignLeft="@+id/graphLayout"
-        android:layout_alignRight="@+id/graphLayout" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" >
 
         <RadioGroup
             android:id="@+id/rdTimespans"
@@ -122,33 +122,32 @@
             android:layout_alignLeft="@+id/graphLayout"
             android:layout_below="@+id/graphLayout"
             android:layout_margin="10dp" >
-
+
             <RadioButton
                 android:id="@+id/rdDaily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Daily"
                 android:onClick="graphDaily"
+                android:text="Daily"
                 android:textSize="20sp" />
-
+
             <RadioButton
                 android:id="@+id/rdMonthly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monthly"
                 android:onClick="graphMonthly"
+                android:text="Monthly"
                 android:textSize="20sp" />
-
         </RadioGroup>
-
+
         <LinearLayout
             android:id="@+id/llOptionsChildStack"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <Spinner
                 android:id="@+id/cbMonths"
                 style="@style/SpinnerAsEditText"
@@ -157,7 +156,7 @@
                 android:layout_alignRight="@+id/graphLayout"
                 android:layout_alignTop="@+id/rdTimespans"
                 android:entries="@array/strMonths" />
-
+
             <Spinner
                 android:id="@+id/cbYears"
                 style="@style/SpinnerAsEditText"
@@ -166,9 +165,7 @@
                 android:layout_alignLeft="@+id/cbMonths"
                 android:layout_below="@+id/cbMonths"
                 android:entries="@array/strYears" />
-
         </LinearLayout>
-
     </LinearLayout>
 
 </RelativeLayout>
