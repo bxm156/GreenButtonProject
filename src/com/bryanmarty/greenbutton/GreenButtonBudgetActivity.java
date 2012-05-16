@@ -55,6 +55,9 @@ public class GreenButtonBudgetActivity extends Activity {
 		LinkedList<IntervalReading> result = new LinkedList<IntervalReading>();
 		LinkedList<IntervalReading> result2 = new LinkedList<IntervalReading>();
 		Date dateMostRecentEntry = Calendar.getInstance().getTime();
+		Date dateStartThisMonth;
+		Date dateStartLastMonth;
+		Date dateEndLastMonth;
 		
 		Future<Date> futureDateMostRecentEntry = TrackManager.getLastDate();
 		try {
@@ -62,24 +65,19 @@ public class GreenButtonBudgetActivity extends Activity {
 		} catch (Exception e){
 			e.printStackTrace();
 		}
-		
-		
+			
 		Calendar c = Calendar.getInstance();
-		
-		c.setTime(dateMostRecentEntry);
-		
-		/*c.roll(Calendar.MONTH, -1); // last month
+		c.setTimeInMillis(dateMostRecentEntry.getTime());
 		c.set(Calendar.DAY_OF_MONTH, 1);
-		c.set(Calendar.HOUR_OF_DAY, 0);
-		c.set(Calendar.MINUTE, 0);
-		c.set(Calendar.SECOND, 0);
-		c.set(Calendar.MILLISECOND, 0);*/		
+		dateStartThisMonth = c.getTime();
 		
-		Date startLastMonth = c.getTime();
-		c.roll(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
-		Date endLastMonth = c.getTime();
+		c.roll(Calendar.MONTH, -1);
+		dateStartLastMonth = c.getTime();
+		int numDayslastMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+		c.add(Calendar.DAY_OF_MONTH, numDayslastMonth);
+		dateEndLastMonth = c.getTime();
 		
-		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsBetween(startLastMonth, endLastMonth);
+		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsBetween(dateStartLastMonth, dateEndLastMonth);
 		try {
 			result = future.get();
 		} catch (Exception e) {
@@ -90,16 +88,8 @@ public class GreenButtonBudgetActivity extends Activity {
 		{
 			usagePrevious += r.getValue();
 		}
-		
-		Calendar c2 = Calendar.getInstance();
-		c2.set(Calendar.DAY_OF_MONTH, 1);
-		c2.set(Calendar.HOUR_OF_DAY, 0);
-		c2.set(Calendar.MINUTE, 0);
-		c2.set(Calendar.SECOND, 0);
-		c2.set(Calendar.MILLISECOND, 0);
-		Date now = c2.getTime();
-		
-		Future<LinkedList<IntervalReading>> future2 = TrackManager.getReadingsSince(now);
+				
+		Future<LinkedList<IntervalReading>> future2 = TrackManager.getReadingsBetween(dateStartThisMonth, dateMostRecentEntry);
 		try {
 			result2 = future2.get();
 		} catch (Exception e) {
