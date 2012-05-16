@@ -69,6 +69,8 @@ public class GreenButtonBudgetActivity extends Activity {
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(dateMostRecentEntry.getTime());
 		c.set(Calendar.DAY_OF_MONTH, 1);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
 		dateStartThisMonth = c.getTime();
 		
 		c.roll(Calendar.MONTH, -1);
