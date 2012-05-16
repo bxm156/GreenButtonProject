@@ -256,7 +256,7 @@ public class GreenButtonGraphActivity extends Activity {
 		GraphViewSeries valueSeries = new GraphViewSeries("Energy Usage History", Color.WHITE, valuePoints);
 		GraphViewSeries costSeries = new GraphViewSeries(costPoints);
 		
-		GraphView graphView = new BarGraphView(this, "")  {
+		GraphView graphView = new BarGraphView(this, "kWh vs. Time")  {
 			
 			@Override
 			 protected String formatLabel(double value, boolean isValueX) {  
