@@ -111,12 +111,12 @@
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:gravity="center_horizontal" >
-
+
         <LinearLayout
             android:id="@+id/llTxtStatic"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="center|center_horizontal"
             android:orientation="vertical" >
 
             <TextView
@@ -128,16 +128,19 @@
                 android:text="30 days left in July"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="25sp" />
-
+
             <TextView
                 android:id="@+id/txtPercentEnergyUsed"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/imageView1"
                 android:layout_below="@+id/imMeter"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
                 android:text="50% Energy Used"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="25sp" />
+
         </LinearLayout>
     </LinearLayout>
 
