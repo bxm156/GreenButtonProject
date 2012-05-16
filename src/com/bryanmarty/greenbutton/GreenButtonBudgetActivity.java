@@ -11,11 +11,17 @@ import com.bryanmarty.greenbutton.data.IntervalReading;
 import com.bryanmarty.greenbutton.database.TrackManager;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GreenButtonBudgetActivity extends Activity {
 
+	protected int lastMonthUsage = 0;
+	protected int currentMonthUsage = 0;
+	protected int currentDayOfMonth = 0;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,7 @@ public class GreenButtonBudgetActivity extends Activity {
 	    
 	    setUpDate();
 	    setUpUsage();
+	    setUpMeter();
 	}
 
 	@Override
@@ -40,14 +47,13 @@ public class GreenButtonBudgetActivity extends Activity {
 				"August", "September", "October", "November",
 				"December"};
 		TextView txtDaysRemaining = (TextView)this.findViewById(R.id.txtDaysRemaining);
-		TextView txtCurrentMonth = (TextView)this.findViewById(R.id.txtCurrentMonth);
 		
 		Calendar c = Calendar.getInstance();
 		int daysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
 		int dayInMonth = c.get(Calendar.DAY_OF_MONTH);
+		currentDayOfMonth = dayInMonth;
 		int daysLeft = daysInMonth - dayInMonth;
-		txtDaysRemaining.setText("" + daysLeft);
-		txtCurrentMonth.setText(monthName[c.get(Calendar.MONTH)]);
+		txtDaysRemaining.setText("" + daysLeft + " days left in " + monthName[c.get(Calendar.MONTH)]);
 	}
 	
 	protected void setUpUsage()
@@ -103,16 +109,49 @@ public class GreenButtonBudgetActivity extends Activity {
 			usageCurrent += r.getValue();
 		}
 		
-		TextView txtUsageCurrent = (TextView)this.findViewById(R.id.txtUsageCurrent);
-		txtUsageCurrent.setText("" + (int)((double)usageCurrent / 1000.0));
+		lastMonthUsage = (int)((double)usagePrevious / 1000.0);
+		currentMonthUsage = (int)((double)usageCurrent / 1000.0);
 		
-		TextView txtUsagePrevious = (TextView)this.findViewById(R.id.txtUsagePrevious);
-		txtUsagePrevious.setText("" + (int)((double)usagePrevious / 1000.0));
-				
+		
+		
 	}
 	
-	protected void setUpUsagePrevious()
+	protected void setUpMeter()
 	{
+		TextView txtEnergyUsed = (TextView)this.findViewById(R.id.txtPercentEnergyUsed);
+		
+		ImageView imMeter = (ImageView)this.findViewById(R.id.imMeter);
+		
+		double percentUsage = ((double)currentMonthUsage) / ((double) lastMonthUsage);
+		
+		txtEnergyUsed.setText("" + (int)(percentUsage * 100) + "% energy used");
+		
+		//double percentMonth = ((double)currentDayOfMonth) / ((double)Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
+		
+		if(percentUsage > 0.85)
+		{
+			imMeter.setImageResource(R.drawable.budget_meter_0_hdpi);
+		}
+		else if (percentUsage > 0.7)
+		{
+			imMeter.setImageResource(R.drawable.budget_meter_1_hdpi);
+		}
+		else if (percentUsage > 0.55)
+		{
+			imMeter.setImageResource(R.drawable.budget_meter_2_hdpi);
+		}
+		else if (percentUsage > 0.40)
+		{
+			imMeter.setImageResource(R.drawable.budget_meter_3_hdpi);
+		}
+		else if (percentUsage > 0.25)
+		{
+			imMeter.setImageResource(R.drawable.budget_meter_4_hdpi);
+		}
+		else
+		{
+			imMeter.setImageResource(R.drawable.budget_meter_5_hdpi);
+		}
 		
 	}
 }
