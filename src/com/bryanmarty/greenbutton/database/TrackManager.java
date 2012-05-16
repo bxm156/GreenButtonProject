@@ -155,7 +155,7 @@ public class TrackManager {
 				}
 				Cursor c = null;
 				try {
-					c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, "start > ? AND start < ?", new String[]{String.valueOf(beginDate.getTime()/1000L),String.valueOf(endDate.getTime()/1000L)}, null, null, null);
+					c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, "start > ? AND start < ?", new String[]{String.valueOf(beginDate.getTime()),String.valueOf(endDate.getTime())}, null, null, null);
 					
 					if (c.moveToFirst()) {
 						do {
