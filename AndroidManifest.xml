@@ -24,7 +24,9 @@
         <activity android:name=".GreenButtonPINActivity" android:screenOrientation="portrait" android:label="PIN">
             
         </activity>
-        <activity android:name="GreenButtonBudgetActivity" android:label="Budget"></activity>
+        <activity android:name="GreenButtonBudgetActivity" android:screenOrientation="portrait" android:label="Budget">
+            
+        </activity>
     </application>
 
 </manifest>
