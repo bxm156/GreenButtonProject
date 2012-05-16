@@ -12,7 +12,7 @@
         android:label="@string/app_name" 
         android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
         
-        <activity android:name=".GreenButtonProjectActivity" android:screenOrientation="portrait" android:label="Home" >
+        <activity android:name=".GreenButtonProjectActivity" android:screenOrientation="portrait" android:label="BIY" >
             <intent-filter>
 	            <action android:name="android.intent.action.MAIN" />
 	        	<category android:name="android.intent.category.LAUNCHER" />
