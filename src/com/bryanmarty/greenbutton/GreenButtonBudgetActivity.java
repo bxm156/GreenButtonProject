@@ -49,12 +49,13 @@ public class GreenButtonBudgetActivity extends Activity {
 		
 		
 		Calendar c = Calendar.getInstance();
-		c.roll(Calendar.MONTH, -1); // last month
+		c.set(2011, Calendar.SEPTEMBER, 1, 0, 0);
+		/*c.roll(Calendar.MONTH, -1); // last month
 		c.set(Calendar.DAY_OF_MONTH, 1);
 		c.set(Calendar.HOUR_OF_DAY, 0);
 		c.set(Calendar.MINUTE, 0);
 		c.set(Calendar.SECOND, 0);
-		c.set(Calendar.MILLISECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);*/		
 		
 		Date startLastMonth = c.getTime();
 		c.roll(Calendar.DAY_OF_MONTH, c.getActualMaximum(Calendar.DAY_OF_MONTH));
@@ -82,7 +83,7 @@ public class GreenButtonBudgetActivity extends Activity {
 		
 		Future<LinkedList<IntervalReading>> future2 = TrackManager.getReadingsSince(now);
 		try {
-			result2 = future.get();
+			result2 = future2.get();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
