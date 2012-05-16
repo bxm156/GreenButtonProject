@@ -4,6 +4,7 @@ import java.net.ContentHandler;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import com.bryanmarty.greenbutton.data.IntervalReading;
@@ -34,22 +35,39 @@ public class GreenButtonBudgetActivity extends Activity {
 	
 	protected void setUpDate()
 	{
+		String[] monthName = {"January", "February",
+				"March", "April", "May", "June", "July",
+				"August", "September", "October", "November",
+				"December"};
 		TextView txtDaysRemaining = (TextView)this.findViewById(R.id.txtDaysRemaining);
+		TextView txtCurrentMonth = (TextView)this.findViewById(R.id.txtCurrentMonth);
+		
 		Calendar c = Calendar.getInstance();
 		int daysInMonth = c.getActualMaximum(Calendar.DAY_OF_MONTH);
 		int dayInMonth = c.get(Calendar.DAY_OF_MONTH);
 		int daysLeft = daysInMonth - dayInMonth;
 		txtDaysRemaining.setText("" + daysLeft);
+		txtCurrentMonth.setText(monthName[c.get(Calendar.MONTH)]);
 	}
 	
 	protected void setUpUsage()
 	{
 		LinkedList<IntervalReading> result = new LinkedList<IntervalReading>();
 		LinkedList<IntervalReading> result2 = new LinkedList<IntervalReading>();
+		Date dateMostRecentEntry = Calendar.getInstance().getTime();
+		
+		Future<Date> futureDateMostRecentEntry = TrackManager.getLastDate();
+		try {
+				dateMostRecentEntry = futureDateMostRecentEntry.get();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 		
 		
 		Calendar c = Calendar.getInstance();
-		c.set(2011, Calendar.SEPTEMBER, 1, 0, 0);
+		
+		c.setTime(dateMostRecentEntry);
+		
 		/*c.roll(Calendar.MONTH, -1); // last month
 		c.set(Calendar.DAY_OF_MONTH, 1);
 		c.set(Calendar.HOUR_OF_DAY, 0);
