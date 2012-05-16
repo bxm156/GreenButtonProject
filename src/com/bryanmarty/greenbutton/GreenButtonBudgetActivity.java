@@ -11,6 +11,7 @@ import com.bryanmarty.greenbutton.data.IntervalReading;
 import com.bryanmarty.greenbutton.database.TrackManager;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -105,7 +106,7 @@ public class GreenButtonBudgetActivity extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(result2.size() == 0)
+		if(result2.size() == 0 || dateMostRecentEntry.before(Calendar.getInstance().getTime()))
 			needsToUpdateGBData = true;
 		
 		int usageCurrent = 0;
@@ -128,12 +129,17 @@ public class GreenButtonBudgetActivity extends Activity {
 		double percentUsage = ((double)currentMonthUsage) / ((double) lastMonthUsage);
 		
 		if(needsToUpdateGBData)
-			txtEnergyUsed.setText("No GB Data available this month, please update first.");
+		{
+			txtEnergyUsed.setTypeface(null, Typeface.ITALIC);
+			txtEnergyUsed.setText("No GB Data available this month, please add current data first.");
+		}
 		else
+		{
 			if(percentUsage < 1.0)
 				txtEnergyUsed.setText("" + (int)(percentUsage * 100) + "% energy used");
 			else
 				txtEnergyUsed.setText("Budget exceeded by " + String.valueOf((int)(percentUsage * 100) - 100) + "%");
+		}
 		//double percentMonth = ((double)currentDayOfMonth) / ((double)Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
 		
 		if(percentUsage > 0.85)
