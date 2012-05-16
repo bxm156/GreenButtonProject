@@ -1,7 +1,6 @@
 package com.bryanmarty.greenbutton;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -14,8 +13,6 @@ import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewSeries;
-import com.jjoe64.graphview.LineGraphView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -27,7 +24,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.AdapterView;
 
 public class GreenButtonGraphActivity extends Activity {
@@ -280,7 +276,7 @@ public class GreenButtonGraphActivity extends Activity {
 		if(isMonthlySelected) {
 			graphView.setViewPort(0,13);
 		}
-		graphView.setViewPort(0, 10);
+		graphView.setViewPort(1, 10);
 		graphView.setScrollable(true);
 		
 		//graphView.addSeries(costSeries);
