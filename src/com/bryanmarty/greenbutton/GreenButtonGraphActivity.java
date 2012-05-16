@@ -21,9 +21,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.AdapterView;
 
@@ -31,11 +34,58 @@ public class GreenButtonGraphActivity extends Activity {
 	
 	LinkedList<IntervalReading> cached_ = null;
 	
+	int actualYear = 2011;
+	int yearIndex = 0;
+	int monthIndex= 0;
+	boolean isDailySelected = false;
+	boolean isMonthlySelected = false;
+	public String[] monthList = {};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.graph);
+		monthList = getResources().getStringArray(R.array.strMonths);
+		
+		Calendar cal = Calendar.getInstance();
+		Spinner monthSpin = (Spinner) findViewById(R.id.cbMonths);
+		Spinner yearSpin = (Spinner) findViewById(R.id.cbYears);
+		
+		monthIndex = cal.get(Calendar.MONTH);
+		monthSpin.setSelection(monthIndex);
+		int year = cal.get(Calendar.YEAR);	
+	
+		monthSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+	
+		    @Override
+		    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+		       	monthIndex = position;
+		       	regraph();
+		    };
+	
+		    @Override
+		    public void onNothingSelected(AdapterView<?> parentView) {
+		        // your code here
+		    }
+		    
+		});
+		
+		yearSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+			
+		    @Override
+		    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+		       	yearIndex = position;
+		       	actualYear = yearIndex + 2011;
+		       	regraph();
+		    };
+	
+		    @Override
+		    public void onNothingSelected(AdapterView<?> parentView) {
+		        // your code here
+		    }
+		    
+		});
+
 	}
 	
 	
@@ -44,35 +94,63 @@ public class GreenButtonGraphActivity extends Activity {
 		super.onNewIntent(intent);
 	}
 	
-	
+	protected void regraph() {
+		RadioButton daily = (RadioButton) findViewById(R.id.rdDaily);
+		if(daily.isChecked()) {
+			isDailySelected = true;
+			isMonthlySelected = false;
+			graphDaily(null);
+		}
+		
+		RadioButton monthly = (RadioButton) findViewById(R.id.rdMonthly);
+		if(monthly.isChecked()) {
+			isDailySelected = false;
+			isMonthlySelected = true;
+			graphMonthly(null);
+		}
+	}
 
 	@Override
 	protected void onStart() {
-		showGraph(prepareDaily());
+		graphDaily(null);
 		super.onStart();
 	}
 	
 	public void graphDaily(View v) {
-		showGraph(prepareDaily());
+		isDailySelected = true;
+		isMonthlySelected = false;
+		showGraph(prepareDaily(monthIndex));
 	}
 	
 	public void graphMonthly(View v) {
-		showGraph(prepareMonthly());
+		isDailySelected = false;
+		isMonthlySelected = true;
+		showGraph(prepareMonthly(actualYear));
 	}
 
-	public void prepareDataDaily() {
+	public void prepareDataDaily(int month) {
 		LinkedList<IntervalReading> result = new LinkedList<IntervalReading>();
 		
 		//Pull all readings from the beginning of the month
 		Calendar cal = Calendar.getInstance();
+		if(month > -1 && month < 12) {
+			cal.set(Calendar.MONTH, month);			
+		}
 		cal.set(Calendar.DATE, 1);
 		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		cal.set(Calendar.YEAR, 2011);
+		Date startDate = cal.getTime();
 		
-		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsSince(cal.getTime());
+		cal.set(Calendar.MONTH, (cal.get(Calendar.MONTH)+1)%12);
+		if(month == 11) {
+			cal.set(Calendar.YEAR, cal.get(Calendar.YEAR)+1);
+		}
+		Date endDate = cal.getTime();
+		
+		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsBetween(startDate, endDate);
 		try {
 			result = future.get();
 			cached_ = result;
@@ -80,7 +158,7 @@ public class GreenButtonGraphActivity extends Activity {
 			e.printStackTrace();
 		}
 	}
-	protected void prepareDataMonthly() {
+	protected void prepareDataMonthly(int year) {
 		LinkedList<IntervalReading> result = new LinkedList<IntervalReading>();
 		
 		//Pull all readings from the beginning of the month
@@ -91,9 +169,14 @@ public class GreenButtonGraphActivity extends Activity {
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
-		cal.set(Calendar.YEAR, 2011);
+		cal.set(Calendar.YEAR, year);
 		
-		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsSince(cal.getTime());
+		Date startDate = cal.getTime();
+		
+		cal.set(Calendar.YEAR, year+1);
+		Date endDate = cal.getTime();
+		
+		Future<LinkedList<IntervalReading>> future = TrackManager.getReadingsBetween(startDate,endDate);
 		try {
 			result = future.get();
 			cached_ = result;
@@ -102,8 +185,8 @@ public class GreenButtonGraphActivity extends Activity {
 		}
 	}
 	
-	protected TreeMap<Integer,DataPoint> prepareDaily() {
-		prepareDataDaily();
+	protected TreeMap<Integer,DataPoint> prepareDaily(int month) {
+		prepareDataDaily(month);
 		TreeMap<Integer,DataPoint> map = new TreeMap<Integer,DataPoint>();
 		for(IntervalReading r : cached_) {
 			Date startDate = r.getStartTime();
@@ -123,8 +206,8 @@ public class GreenButtonGraphActivity extends Activity {
 		return map;
 	}
 	
-	protected TreeMap<Integer,DataPoint> prepareMonthly() {
-		prepareDataMonthly();
+	protected TreeMap<Integer,DataPoint> prepareMonthly(int year) {
+		prepareDataMonthly(year);
 		TreeMap<Integer,DataPoint> map = new TreeMap<Integer,DataPoint>();
 		for (IntervalReading r: cached_) {
 			Date startDate = r.getStartTime();
@@ -145,8 +228,16 @@ public class GreenButtonGraphActivity extends Activity {
 	}
 	
 	protected void showGraph(TreeMap<Integer,DataPoint> data) {
+		LinearLayout layout = (LinearLayout) findViewById(R.id.graphLayout);
+		layout.removeAllViews();
 		
 		if(data.size() <= 0) {
+			TextView none = new TextView(this);
+			none.setText("No Records Available");
+			none.setTextColor(Color.WHITE);
+			none.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+		
+			layout.addView(none);
 			return;
 		}
 		
@@ -158,7 +249,8 @@ public class GreenButtonGraphActivity extends Activity {
 		for(Integer key : keys) {
 			DataPoint dp = data.get(key);
 			GraphViewData pCost = new GraphViewData(dp.x,dp.cost);
-			GraphViewData pValue = new GraphViewData(dp.x,dp.value);
+			GraphViewData pValue = new GraphViewData(dp.x,dp.value/1000L);
+			Log.i("point",dp.x + " - " + dp.value/1000L);
 			valuePoints[x] = pValue;
 			costPoints[x] = pCost;
 			x++;
@@ -168,14 +260,31 @@ public class GreenButtonGraphActivity extends Activity {
 		GraphViewSeries valueSeries = new GraphViewSeries("Energy Usage History", Color.WHITE, valuePoints);
 		GraphViewSeries costSeries = new GraphViewSeries(costPoints);
 		
-		GraphView graphView = new BarGraphView(this, "");
+		GraphView graphView = new BarGraphView(this, "")  {
+			
+			@Override
+			 protected String formatLabel(double value, boolean isValueX) {  
+					if (isValueX) {  
+						if(isMonthlySelected) {
+							return monthList[(int) value];
+						} else {
+							return String.valueOf((int) value);
+						}
+					} else {  
+						// y-axis, use default formatter  
+						return super.formatLabel(value, isValueX);  
+					}  
+			 	}  
+			}; 
+	
+		if(isMonthlySelected) {
+			graphView.setViewPort(0,13);
+		}
 		graphView.setViewPort(0, 10);
 		graphView.setScrollable(true);
 		
 		//graphView.addSeries(costSeries);
 		graphView.addSeries(valueSeries);
-		LinearLayout layout = (LinearLayout) findViewById(R.id.graphLayout);
-		layout.removeAllViews();
 		layout.addView(graphView);
 	}
 

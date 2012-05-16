@@ -1,5 +1,9 @@
 package com.bryanmarty.greenbutton;
 
+import java.util.Date;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 import com.bryanmarty.greenbutton.database.TrackManager;
 import com.bryanmarty.greenbutton.tasks.GBDataDownloader;
 import com.bryanmarty.greenbutton.tasks.GBDataDownloaderListener;
@@ -64,7 +68,6 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
     	btnGetGBData.setEnabled(true);
     	pbGBDownloadProgress.setVisibility(View.GONE);
     	onBackPressed();
-    	Toast.makeText(this, "Data Successfully Added", Toast.LENGTH_LONG);
     	
     	//TODO: This will be removed, but when testing with a real example file, setting the contents of the 
     	// text box to all the data causes an out of memory error in Android
