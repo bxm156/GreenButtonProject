@@ -88,7 +88,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
 			String sql = "CREATE TABLE gbdata (start integer UNIQUE ON CONFLICT REPLACE, duration integer NOT NULL, value blob NOT NULL, cost integer NULL);";
 			db.execSQL(sql);
 		} catch (SQLException e) {
-			Log.e("SQLite","Failed to create database");
+
 		}
 
 	}

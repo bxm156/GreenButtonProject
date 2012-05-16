@@ -246,7 +246,6 @@ public class GreenButtonGraphActivity extends Activity {
 			DataPoint dp = data.get(key);
 			GraphViewData pCost = new GraphViewData(dp.x,dp.cost);
 			GraphViewData pValue = new GraphViewData(dp.x,dp.value/1000L);
-			Log.i("point",dp.x + " - " + dp.value/1000L);
 			valuePoints[x] = pValue;
 			costPoints[x] = pCost;
 			x++;

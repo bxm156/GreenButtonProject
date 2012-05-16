@@ -64,7 +64,6 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
 
 	@Override
 	public void onPostExecute(Integer result) {
-		Log.i("Inserted Records: ",String.valueOf(result));
     	btnGetGBData.setEnabled(true);
     	pbGBDownloadProgress.setVisibility(View.GONE);
     	onBackPressed();

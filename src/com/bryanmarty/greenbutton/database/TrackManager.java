@@ -48,7 +48,6 @@ public class TrackManager {
 	}
 	
 	public synchronized static void shutdown() {
-		Log.i("Thread Pool","Shutting down Thread Pool");
 		if(!initialized) {
 			return;
 		}
