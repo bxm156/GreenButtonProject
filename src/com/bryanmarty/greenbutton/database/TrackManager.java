@@ -120,7 +120,7 @@ public class TrackManager {
 					if (c.moveToFirst()) {
 						do {
 							IntervalReading r = new IntervalReading();
-							r.setStartTime(new Date(c.getInt(0)*1000L));
+							r.setStartTime(new Date(c.getLong(0)));
 							r.setDuration(c.getInt(1));
 							r.setValue(c.getInt(2));
 							r.setCost(c.getInt(3));
@@ -160,7 +160,7 @@ public class TrackManager {
 					if (c.moveToFirst()) {
 						do {
 							IntervalReading r = new IntervalReading();
-							r.setStartTime(new Date(c.getInt(0)*1000L));
+							r.setStartTime(new Date(c.getLong(0)));
 							r.setDuration(c.getInt(1));
 							r.setValue(c.getInt(2));
 							r.setCost(c.getInt(3));
@@ -197,7 +197,7 @@ public class TrackManager {
 				try {
 					c = db.query("gbdata", new String[] {"start"}, null, null, null, null, "start DESC","1");
 					if (c.moveToFirst()) {
-							result = new Date(c.getInt(0)*1000L);
+							result = new Date(c.getLong(0));
 					}
 				} catch (Exception e) {
 					
