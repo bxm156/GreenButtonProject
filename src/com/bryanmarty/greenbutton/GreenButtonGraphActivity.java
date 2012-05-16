@@ -115,7 +115,7 @@ public class GreenButtonGraphActivity extends Activity {
 	public void graphDaily(View v) {
 		isDailySelected = true;
 		isMonthlySelected = false;
-		showGraph(prepareDaily(monthIndex));
+		showGraph(prepareDaily(monthIndex,actualYear));
 	}
 	
 	public void graphMonthly(View v) {
@@ -124,7 +124,7 @@ public class GreenButtonGraphActivity extends Activity {
 		showGraph(prepareMonthly(actualYear));
 	}
 
-	public void prepareDataDaily(int month) {
+	public void prepareDataDaily(int month,int year) {
 		LinkedList<IntervalReading> result = new LinkedList<IntervalReading>();
 		
 		//Pull all readings from the beginning of the month
@@ -137,12 +137,12 @@ public class GreenButtonGraphActivity extends Activity {
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
-		cal.set(Calendar.YEAR, 2011);
+		cal.set(Calendar.YEAR, year);
 		Date startDate = cal.getTime();
 		
 		cal.set(Calendar.MONTH, (cal.get(Calendar.MONTH)+1)%12);
 		if(month == 11) {
-			cal.set(Calendar.YEAR, cal.get(Calendar.YEAR)+1);
+			cal.set(Calendar.YEAR, year+1);
 		}
 		Date endDate = cal.getTime();
 		
@@ -181,8 +181,8 @@ public class GreenButtonGraphActivity extends Activity {
 		}
 	}
 	
-	protected TreeMap<Integer,DataPoint> prepareDaily(int month) {
-		prepareDataDaily(month);
+	protected TreeMap<Integer,DataPoint> prepareDaily(int month, int year) {
+		prepareDataDaily(month, year);
 		TreeMap<Integer,DataPoint> map = new TreeMap<Integer,DataPoint>();
 		for(IntervalReading r : cached_) {
 			Date startDate = r.getStartTime();
@@ -274,7 +274,7 @@ public class GreenButtonGraphActivity extends Activity {
 			}; 
 	
 		if(isMonthlySelected) {
-			graphView.setViewPort(0,13);
+			graphView.setViewPort(0,4);
 		}
 		graphView.setViewPort(1, 10);
 		graphView.setScrollable(true);
