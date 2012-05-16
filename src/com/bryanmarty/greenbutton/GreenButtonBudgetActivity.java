@@ -130,8 +130,10 @@ public class GreenButtonBudgetActivity extends Activity {
 		if(needsToUpdateGBData)
 			txtEnergyUsed.setText("No GB Data available this month, please update first.");
 		else
-			txtEnergyUsed.setText("" + (int)(percentUsage * 100) + "% energy used");
-		
+			if(percentUsage < 1.0)
+				txtEnergyUsed.setText("" + (int)(percentUsage * 100) + "% energy used");
+			else
+				txtEnergyUsed.setText("Budget exceeded by " + String.valueOf((int)(percentUsage * 100) - 100) + "%");
 		//double percentMonth = ((double)currentDayOfMonth) / ((double)Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
 		
 		if(percentUsage > 0.85)
