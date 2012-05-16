@@ -22,6 +22,8 @@ public class GreenButtonBudgetActivity extends Activity {
 	protected int currentMonthUsage = 0;
 	protected int currentDayOfMonth = 0;
 	
+	protected boolean needsToUpdateGBData = false;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,9 @@ public class GreenButtonBudgetActivity extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		if(result2.size() == 0)
+			needsToUpdateGBData = true;
+		
 		int usageCurrent = 0;
 		for(IntervalReading r : result2 )
 		{
@@ -111,8 +116,6 @@ public class GreenButtonBudgetActivity extends Activity {
 		
 		lastMonthUsage = (int)((double)usagePrevious / 1000.0);
 		currentMonthUsage = (int)((double)usageCurrent / 1000.0);
-		
-		
 		
 	}
 	
@@ -124,7 +127,10 @@ public class GreenButtonBudgetActivity extends Activity {
 		
 		double percentUsage = ((double)currentMonthUsage) / ((double) lastMonthUsage);
 		
-		txtEnergyUsed.setText("" + (int)(percentUsage * 100) + "% energy used");
+		if(needsToUpdateGBData)
+			txtEnergyUsed.setText("No GB Data available this month, please update first.");
+		else
+			txtEnergyUsed.setText("" + (int)(percentUsage * 100) + "% energy used");
 		
 		//double percentMonth = ((double)currentDayOfMonth) / ((double)Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH));
 		
