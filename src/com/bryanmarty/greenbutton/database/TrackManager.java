@@ -181,4 +181,36 @@ public class TrackManager {
 		return threadPool_.submit(request);
 	}
 	
+	public static Future<Date> getLastDate() {
+		TrackRequest<Date> request = new TrackRequest<Date>() {
+			
+			@Override
+			public Date call() throws Exception {
+				Date result = new Date(0);
+				
+				SQLiteDatabase db = getDatabase();
+				
+				if(db == null) {
+					throw new SQLiteException("Database was null");
+				}
+				Cursor c = null;
+				try {
+					c = db.query("gbdata", new String[] {"start"}, null, null, null, null, "start DESC","1");
+					if (c.moveToFirst()) {
+							result = new Date(c.getInt(0)*1000L);
+					}
+				} catch (Exception e) {
+					
+				} finally {
+					if(c != null) {
+						c.close();
+					}
+				}
+				return result;
+			}
+		};
+		request.setDatabase(dbManager.getDatabase());
+		return threadPool_.submit(request);
+	}
+	
 }

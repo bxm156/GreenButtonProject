@@ -63,6 +63,8 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
 		Log.i("Inserted Records: ",String.valueOf(result));
     	btnGetGBData.setEnabled(true);
     	pbGBDownloadProgress.setVisibility(View.GONE);
+    	onBackPressed();
+    	Toast.makeText(this, "Data Successfully Added", Toast.LENGTH_LONG);
     	
     	//TODO: This will be removed, but when testing with a real example file, setting the contents of the 
     	// text box to all the data causes an out of memory error in Android
