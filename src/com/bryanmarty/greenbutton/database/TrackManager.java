@@ -120,7 +120,7 @@ public class TrackManager {
 					if (c.moveToFirst()) {
 						do {
 							IntervalReading r = new IntervalReading();
-							r.setStartTime(new Date(c.getInt(0)*1000L));
+							r.setStartTime(new Date(c.getLong(0)));
 							r.setDuration(c.getInt(1));
 							r.setValue(c.getInt(2));
 							r.setCost(c.getInt(3));
@@ -155,12 +155,12 @@ public class TrackManager {
 				}
 				Cursor c = null;
 				try {
-					c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, "start > ? AND start < ?", new String[]{String.valueOf(beginDate.getTime()/1000L),String.valueOf(endDate.getTime()/1000L)}, null, null, null);
+					c = db.query("gbdata", new String[]{"start", "duration", "value", "cost"}, "start > ? AND start < ?", new String[]{String.valueOf(beginDate.getTime()),String.valueOf(endDate.getTime())}, null, null, null);
 					
 					if (c.moveToFirst()) {
 						do {
 							IntervalReading r = new IntervalReading();
-							r.setStartTime(new Date(c.getInt(0)*1000L));
+							r.setStartTime(new Date(c.getLong(0)));
 							r.setDuration(c.getInt(1));
 							r.setValue(c.getInt(2));
 							r.setCost(c.getInt(3));
@@ -175,6 +175,38 @@ public class TrackManager {
 					}
 				}
 				return readings;
+			}
+		};
+		request.setDatabase(dbManager.getDatabase());
+		return threadPool_.submit(request);
+	}
+	
+	public static Future<Date> getLastDate() {
+		TrackRequest<Date> request = new TrackRequest<Date>() {
+			
+			@Override
+			public Date call() throws Exception {
+				Date result = new Date(0);
+				
+				SQLiteDatabase db = getDatabase();
+				
+				if(db == null) {
+					throw new SQLiteException("Database was null");
+				}
+				Cursor c = null;
+				try {
+					c = db.query("gbdata", new String[] {"start"}, null, null, null, null, "start DESC","1");
+					if (c.moveToFirst()) {
+							result = new Date(c.getLong(0));
+					}
+				} catch (Exception e) {
+					
+				} finally {
+					if(c != null) {
+						c.close();
+					}
+				}
+				return result;
 			}
 		};
 		request.setDatabase(dbManager.getDatabase());

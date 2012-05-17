@@ -60,14 +60,16 @@
                 android:scaleType="fitStart"
                 android:src="@drawable/ic_launcher"
                 android:visibility="invisible" />
-
+
             <ImageButton
                 android:id="@+id/btnBudget_Launcher"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:background="@drawable/app_button_bg_xparent"
+                android:onClick="onClick_Budget"
                 android:scaleType="fitStart"
                 android:src="@drawable/home_buttons_budget" />
+
         </TableRow>
 
         <TableRow
@@ -130,14 +132,16 @@
                 android:scaleType="fitStart"
                 android:src="@drawable/ic_launcher"
                 android:visibility="invisible" />
-
+
             <ImageButton
                 android:id="@+id/btnWeb_Launcher"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:background="@drawable/app_button_bg_xparent"
+                android:onClick="onClick_Web"
                 android:scaleType="fitStart"
                 android:src="@drawable/home_buttons_web" />
+
         </TableRow>
 
     </TableLayout>

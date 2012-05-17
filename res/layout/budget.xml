@@ -1,52 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/app_background_hdpi"
-    android:orientation="vertical" >
+    android:background="@drawable/app_background_hdpi" >
 
     <ImageView
-        android:id="@+id/imLogo"
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:padding="10dp"
-        android:paddingBottom="0dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo_white_hdpi" />
-
-    <TextView
-        android:id="@+id/txtEnterPIN"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imLogo"
-        android:gravity="center|center_horizontal"
-        android:paddingTop="15dp"
-        android:text="ENTER PIN"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/txtPIN_Entry"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtEnterPIN"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/pin_inputarea_hdpi"
-        android:capitalize="none"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="textNoSuggestions|textShortMessage"
-        android:singleLine="true"
-        android:textColor="@color/col_white"
-        android:textSize="50dp" >
-
-        <requestFocus />
-    </EditText>
+        android:src="@drawable/budget_text_hdpi" />
 
     <FrameLayout
         android:id="@+id/frmMenuBar"
@@ -60,7 +25,6 @@
             android:id="@+id/sdMenuBar"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_gravity="bottom"
             android:content="@+id/content"
             android:handle="@+id/handle"
             android:topOffset="0dp" >
@@ -69,68 +33,58 @@
                 android:id="@+id/handle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/slider_handle_hdpi"
-                android:gravity="bottom" />
+                android:background="@drawable/slider_handle_hdpi" />
 
             <LinearLayout
                 android:id="@+id/content"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@drawable/slider_bg_hdpi"
-                android:gravity="bottom" >
+                android:background="@drawable/slider_bg_hdpi" >
 
                 <TableLayout
                     android:id="@+id/tblMenuBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="bottom"
-                    android:gravity="bottom"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
                     android:stretchColumns="*" >
 
                     <TableRow
                         android:id="@+id/trMenuBar"
                         android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="bottom" >
+                        android:layout_height="fill_parent" >
 
                         <ImageButton
                             android:id="@+id/btnHome"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_home" />
 
                         <ImageButton
                             android:id="@+id/btnBudget"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_budget" />
 
                         <ImageButton
                             android:id="@+id/btnChart"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_chart" />
 
                         <ImageButton
                             android:id="@+id/btnSettings"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_settings" />
 
                         <ImageButton
                             android:id="@+id/btnWeb"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
+                            android:layout_height="fill_parent"
                             android:background="@drawable/app_button_bg_xparent"
                             android:src="@drawable/app_button_web" />
                     </TableRow>
@@ -138,24 +92,56 @@
             </LinearLayout>
         </SlidingDrawer>
     </FrameLayout>
-
-    <Button
-        android:id="@+id/btnGetGBData"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dip"
-        android:onClick="getGBData"
-        android:text="@string/go" />
-
-    <ProgressBar
-        android:id="@+id/gbDownloadProgress"
+
+    <ImageView
+        android:id="@+id/imMeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/llTxtParentContainer"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/budget_meter_5_hdpi" />
+
+    <LinearLayout
+        android:id="@+id/llTxtParentContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_margin="10dp"
-        android:layout_toRightOf="@+id/btnGetGBData"
-        android:visibility="invisible" />
+        android:gravity="center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/llTxtStatic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtDaysRemaining"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:gravity="center_horizontal"
+                android:text="30 days left in July"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/txtPercentEnergyUsed"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/imageView1"
+                android:layout_below="@+id/imMeter"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="50% Energy Used"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
