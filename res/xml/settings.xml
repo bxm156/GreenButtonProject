@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <PreferenceCategory android:key="pref_accounts_and_sync" android:title="@string/accounts_and_sync">
-        <SwitchPreference android:switchTextOff="@string/disabled" android:summaryOn="@string/auto_sync_enabled_message" android:switchTextOn="@string/enabled" android:defaultValue="true" android:key="pref_auto_sync" android:title="@string/auto_sync"/>
+        <SwitchPreference
+            android:switchTextOff="@string/disabled"
+            android:summaryOn="@string/auto_sync_enabled_message"
+            android:switchTextOn="@string/enabled"
+            android:defaultValue="true"
+            android:key="pref_auto_sync"
+            android:title="@string/auto_sync"/>
+    	<com.bryanmarty.greenbutton.dialogs.RemoveAccountPreferenceDialog
+    	    android:title="Remove Account"
+    	    android:dialogMessage="Are you sure you wish to clear your account"
+    	    android:negativeButtonText="No"
+    	   	android:positiveButtonText="Yes"
+    	   	android:summary="Removes all information"
+    	/>
     </PreferenceCategory>
     
 
