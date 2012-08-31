@@ -18,7 +18,7 @@
             android:orientation="vertical" >
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/login_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -29,7 +29,7 @@
             </EditText>
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -50,11 +50,13 @@
                     android:text="@string/signup" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/button_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="onClickLogin"
                     android:text="@string/login" />
+
             </LinearLayout>
         </LinearLayout>
 

@@ -21,6 +21,9 @@ public class GreenButtonProjectActivity extends Activity {
 	    setContentView(R.layout.home);
 	    TrackManager.initialize(this);
 	    vib_ = (Vibrator) this.getSystemService("vibrator");
+	    Intent i = new Intent();
+	    i.setClass(this, GreenButtonLoginActivity.class);
+	    startActivity(i);
 	}
 
 	public void onClick_PIN(View v)
