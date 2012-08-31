@@ -37,7 +37,7 @@
         <activity
             android:name=".GreenButtonBudgetActivity"
             android:label="Budget"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".GreenButtonLoginActivity"
@@ -48,6 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".GreenButtonSettingsActivity" android:icon="@drawable/ic_launcher_settings" android:label="Settings"></activity>
     </application>
 
 </manifest>

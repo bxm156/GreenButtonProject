@@ -32,5 +32,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_green_button_login">GreenButtonLoginActivity</string>
+    <string name="accounts_and_sync">Account &amp; Sync</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="auto_sync_enabled_message">Auto syncing enabled. Data will be automatically downloaded periodically.</string>
+    <string name="auto_sync">Auto Sync</string>
 
 </resources>
