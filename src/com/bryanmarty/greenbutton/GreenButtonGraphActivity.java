@@ -11,6 +11,7 @@ import com.bryanmarty.greenbutton.data.IntervalReading;
 import com.bryanmarty.greenbutton.database.TrackManager;
 import com.jjoe64.graphview.BarGraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphView.GraphViewStyle;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewSeries;
 import android.app.Activity;
@@ -253,7 +254,8 @@ public class GreenButtonGraphActivity extends Activity {
 		}
 		
 		// init example series data
-		GraphViewSeries valueSeries = new GraphViewSeries("Energy Usage History", Color.WHITE, valuePoints);
+		GraphViewStyle style = new GraphViewStyle(Color.WHITE, 1);
+		GraphViewSeries valueSeries = new GraphViewSeries("Energy Usage History",style, valuePoints);
 		GraphViewSeries costSeries = new GraphViewSeries(costPoints);
 		
 		GraphView graphView = new BarGraphView(this, "kWh vs. Time")  {

@@ -4,10 +4,9 @@ public class TendrilConnectOAuthResponse {
 	
 	public String access_token;
 	public String token_type;
-	public String expires_in;
+	public long expires_in;
 	public String refresh_token;
+	public long issued_at;
 	public String scope;
-	public String error;
-	public String error_description;
-	
+	public String route;
 }

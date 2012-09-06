@@ -35,7 +35,6 @@
     <string name="accounts_and_sync">Account &amp; Sync</string>
     <string name="enabled">Enabled</string>
     <string name="disabled">Disabled</string>
-    <string name="auto_sync_enabled_message">Auto syncing enabled. Data will be automatically downloaded periodically.</string>
     <string name="auto_sync">Auto Sync</string>
 
 </resources>

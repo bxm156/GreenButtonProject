@@ -3,7 +3,6 @@
     <PreferenceCategory android:key="pref_accounts_and_sync" android:title="@string/accounts_and_sync">
         <SwitchPreference
             android:switchTextOff="@string/disabled"
-            android:summaryOn="@string/auto_sync_enabled_message"
             android:switchTextOn="@string/enabled"
             android:defaultValue="true"
             android:key="pref_auto_sync"

@@ -1,10 +1,12 @@
 package com.bryanmarty.greenbutton;
 
+import com.bryanmarty.greenbutton.tendril.oauth.TendrilConnect;
 import com.bryanmarty.greenbutton.tendril.oauth.TendrilConnectOAuth;
 import com.bryanmarty.greenbutton.tendril.oauth.TendrilConnectOAuthResponse;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,16 +35,17 @@ public class GreenButtonLoginActivity extends Activity {
     }
     
     public void onClickLogin(View v) {
+    	
+    	//Start a new thread to login, all network access must not be on UI thread 
     	Thread thread = new Thread(new Runnable() {
 	    	
 			@Override
 			public void run() {
-				TendrilConnectOAuthResponse response = TendrilConnectOAuth.authenticate(GreenButtonLoginActivity.this, username_.getText().toString(), password_.getText().toString());
-		    	String toast = "Null";
-		    	if(response != null) {
-		    		toast = response.access_token;
-		    	}
-		    	Log.i("Access Token",toast);
+		    	TendrilConnect connect = TendrilConnect.getInstance(getApplicationContext());
+		    	String username = username_.getText().toString();
+		    	String password = password_.getText().toString();
+		    	boolean result = connect.login(username, password);
+				
 			}
 	    		
     	});
