@@ -13,19 +13,19 @@
         android:label="@string/app_name" 
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         
-        <activity android:name=".GreenButtonProjectActivity" android:screenOrientation="portrait" android:label="BIY" >
+        <activity android:name=".GreenButtonProjectActivity" android:label="BIY" >
             <intent-filter>
 	            <action android:name="android.intent.action.MAIN" />
 	        	<category android:name="android.intent.category.LAUNCHER" />
 	    	</intent-filter>
         </activity>
-        <activity android:name=".GreenButtonGraphActivity" android:screenOrientation="portrait" android:label="Graph" >
+        <activity android:name=".GreenButtonGraphActivity" android:label="Graph" >
             
         </activity>
-        <activity android:name=".GreenButtonPINActivity" android:screenOrientation="portrait" android:label="PIN">
+        <activity android:name=".GreenButtonPINActivity" android:label="PIN">
             
         </activity>
-        <activity android:name="GreenButtonBudgetActivity" android:screenOrientation="portrait" android:label="Budget">
+        <activity android:name="GreenButtonBudgetActivity" android:label="Budget">
             
         </activity>
     </application>
