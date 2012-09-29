@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <style type='text/css'>
+      a            { color:#CCCCCC }
+      div.instructions	{
+      	color:#EEEEEE;
+      	font-size:1em;
+      	margin:1em;
+		text-align:left
+      }
+      div.title    { 
+          color:#EEEEEE; 
+          font-size:1.2em; 
+          font-weight:bold; 
+          margin-top:1em; 
+          margin-bottom:0.5em; 
+          text-align:center }
+      div.subtitle { 
+          color:#BBBBBB; 
+          font-size:0.8em; 
+          margin-bottom:1em; 
+          text-align:center }
+      div.freetext { color:#BBBBBB }
+      div.list     { color:#BBBBBB }
+    </style>
+  </head>
+  <body>
+  <div class="instructions">
+	  <p><b>Budget It Yourself</b> takes data provided by your energy company and
+	  	  makes it easy to use and understand! To use the app, first download Green Button
+	  	  data from your energy provider's website <i>NOTE: This is not yet available from
+	  	  all energy providers!</i>
+	  </p>	  
+	  	  <ol style="margin:0emm">
+	  	   <li>Upload the Green Button data file to <a>www.budgetityourself.com</a></li>
+	  	   <li>Enter the PIN you receive into the DOWNLOAD screen in the app.</li>
+	  	   <li>Press the OK button. The app will download the data and figure out what it all means!</li>
+	  	  </ol>
+	  <p>If at least one month's data is available, the app will estimate an "energy budget"
+	  	 for the current month. You can also view a bar graph of the data to track
+	  	 your daily and monthly energy usage.
+	  	
+	  	 
+	  </p> 
+  </div>
+$ 1.1
+  % Version 1.1
+  _9-29-2012
+  !
+    * Complete graphical update.
+    * Updated download URL to point to the new website.
+$ 1.0
+  % Version 1.0
+  _ 5-15-2012
+  ! 
+    * Initial release for the Apps for Energy challenge.
+$ END_OF_CHANGE_LOG
+  </body>
+</html>
