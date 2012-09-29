@@ -56,7 +56,13 @@ public class GreenButtonBudgetActivity extends Activity {
 		int dayInMonth = c.get(Calendar.DAY_OF_MONTH);
 		currentDayOfMonth = dayInMonth;
 		int daysLeft = daysInMonth - dayInMonth;
-		txtDaysRemaining.setText("" + daysLeft + " days left in " + monthName[c.get(Calendar.MONTH)]);
+		String dayORdays = "";
+		if (daysLeft == 1)
+			dayORdays = " day";
+		else
+			dayORdays = " days";
+		
+		txtDaysRemaining.setText("" + daysLeft + dayORdays + " left in " + monthName[c.get(Calendar.MONTH)]);
 	}
 	
 	protected void setUpUsage()
