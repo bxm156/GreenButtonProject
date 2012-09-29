@@ -1,6 +1,7 @@
 package com.bryanmarty.greenbutton;
 
 import com.bryanmarty.greenbutton.database.TrackManager;
+import com.bryanmarty.greenbutton.tasks.ChangeLog;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,8 +20,14 @@ public class GreenButtonProjectActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.home);
+	    
+	    ChangeLog cl = new ChangeLog(this);
+	    if (cl.firstRun())
+	        cl.getLogDialog().show();
+	    
 	    TrackManager.initialize(this);
 	    vib_ = (Vibrator) this.getSystemService("vibrator");
+
 	}
 
 	public void onClick_PIN(View v)
