@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/budget_large" >
-
+    android:background="@drawable/budgetscreen_large" >
+
     <ImageView
         android:id="@+id/imMeter"
         android:layout_width="wrap_content"
@@ -11,6 +11,9 @@
         android:layout_above="@+id/llTxtParentContainer"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
+        android:adjustViewBounds="true"
+        android:maxHeight="300dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/budget_meter_5_hdpi" />
 
     <LinearLayout
