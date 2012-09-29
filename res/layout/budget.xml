@@ -2,103 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/app_background_hdpi" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:src="@drawable/budget_text_hdpi" />
-
-    <FrameLayout
-        android:id="@+id/frmMenuBar"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:visibility="gone" >
-
-        <SlidingDrawer
-            android:id="@+id/sdMenuBar"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:content="@+id/content"
-            android:handle="@+id/handle"
-            android:topOffset="0dp" >
-
-            <Button
-                android:id="@+id/handle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/slider_handle_hdpi" />
-
-            <LinearLayout
-                android:id="@+id/content"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@drawable/slider_bg_hdpi" >
-
-                <TableLayout
-                    android:id="@+id/tblMenuBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:stretchColumns="*" >
-
-                    <TableRow
-                        android:id="@+id/trMenuBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent" >
-
-                        <ImageButton
-                            android:id="@+id/btnHome"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:background="@drawable/app_button_bg_xparent"
-                            android:src="@drawable/app_button_home" />
-
-                        <ImageButton
-                            android:id="@+id/btnBudget"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:background="@drawable/app_button_bg_xparent"
-                            android:src="@drawable/app_button_budget" />
-
-                        <ImageButton
-                            android:id="@+id/btnChart"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:background="@drawable/app_button_bg_xparent"
-                            android:src="@drawable/app_button_chart" />
-
-                        <ImageButton
-                            android:id="@+id/btnSettings"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:background="@drawable/app_button_bg_xparent"
-                            android:src="@drawable/app_button_settings" />
-
-                        <ImageButton
-                            android:id="@+id/btnWeb"
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:background="@drawable/app_button_bg_xparent"
-                            android:src="@drawable/app_button_web" />
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-        </SlidingDrawer>
-    </FrameLayout>
-
+    android:background="@drawable/budget_large" >
+
     <ImageView
         android:id="@+id/imMeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/llTxtParentContainer"
-        android:layout_below="@+id/imageView1"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:src="@drawable/budget_meter_5_hdpi" />
@@ -118,7 +28,7 @@
             android:layout_height="wrap_content"
             android:gravity="center|center_horizontal"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/txtDaysRemaining"
                 android:layout_width="fill_parent"
@@ -127,8 +37,9 @@
                 android:gravity="center_horizontal"
                 android:text="30 days left in July"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/col_main"
                 android:textSize="25sp" />
-
+
             <TextView
                 android:id="@+id/txtPercentEnergyUsed"
                 android:layout_width="fill_parent"
@@ -139,6 +50,7 @@
                 android:gravity="center_horizontal"
                 android:text="50% Energy Used"
                 android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/col_main"
                 android:textSize="25sp" />
 
         </LinearLayout>
