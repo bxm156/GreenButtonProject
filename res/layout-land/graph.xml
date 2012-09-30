@@ -3,7 +3,7 @@
     android:id="@+id/relLay_graph"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/graph_xlarge" >
+    android:background="@drawable/graph_xlarge_h" >
 
     <LinearLayout
         android:id="@+id/graphLayout"
