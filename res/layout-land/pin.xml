@@ -32,7 +32,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:src="@drawable/upload_box" />
-
+
     <EditText
         android:id="@+id/txtPIN_Entry"
         android:layout_width="wrap_content"
@@ -43,6 +43,7 @@
         android:ems="10"
         android:gravity="center"
         android:padding="20dip"
+        android:singleLine="true"
         android:textColor="@color/col_white"
         android:textSize="35sp" />
 
