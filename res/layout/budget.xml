@@ -47,8 +47,6 @@
                 android:id="@+id/txtPercentEnergyUsed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/imageView1"
-                android:layout_below="@+id/imMeter"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
                 android:text="50% Energy Used"
