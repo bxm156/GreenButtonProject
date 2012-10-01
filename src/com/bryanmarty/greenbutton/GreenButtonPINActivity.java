@@ -30,7 +30,7 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pin);
-        TrackManager.initialize(this);
+        TrackManager.initialize(this.getApplicationContext());
         
         //txtGBData = (EditText)this.findViewById(R.id.txtGBDataResponse);
         btnGetGBData = (Button)this.findViewById(R.id.btnGetGBData);
@@ -38,7 +38,7 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
     }
     
 	public void getGBData(View view) {
-    	GBDataDownloader gbDataDownloader = new GBDataDownloader(this,this);
+    	GBDataDownloader gbDataDownloader = new GBDataDownloader(this.getApplicationContext(),this);
     	EditText txtPin = (EditText)this.findViewById(R.id.txtPIN_Entry);
     	String pin = txtPin.getText().toString();
     	if(pin.contentEquals("") || pin.length() != 7) {

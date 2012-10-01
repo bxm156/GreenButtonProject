@@ -25,7 +25,7 @@ public class GreenButtonProjectActivity extends Activity {
 	    if (cl.firstRun())
 	        cl.getLogDialog().show();
 	    
-	    TrackManager.initialize(this);
+	    TrackManager.initialize(this.getApplicationContext());
 	    vib_ = (Vibrator) this.getSystemService("vibrator");
 
 	}
