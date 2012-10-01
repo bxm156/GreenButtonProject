@@ -3,5 +3,6 @@
 	<style parent="@android:style/Widget.Spinner" name="SpinnerAsEditText">
     	<item name="android:background">@android:drawable/edit_text</item>
     	<item name="android:textSize">20sp</item>
+    	<item name="android:textColor">@color/col_btn_green</item>
 	</style>
 </resources>

@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/graph_xlarge" >
-
+
     <LinearLayout
         android:id="@+id/graphLayout"
         android:layout_width="fill_parent"
@@ -14,8 +14,9 @@
         android:layout_margin="20dp"
         android:background="@drawable/app_button_bg_xparent"
         android:gravity="center"
-        android:orientation="vertical" >
-
+        android:orientation="vertical"
+        android:paddingTop="100dp" >
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -23,17 +24,17 @@
             android:text="No Records"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/col_main" />
-
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/llOptionsParent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" >
-
+        android:layout_alignParentRight="true"
+        android:gravity="center" >
+
         <RadioGroup
             android:id="@+id/rdTimespans"
             android:layout_width="wrap_content"
@@ -49,7 +50,9 @@
                 android:checked="true"
                 android:onClick="graphDaily"
                 android:text="Daily"
-                android:textSize="20sp" />
+                android:textColor="@color/col_btn_green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/rdMonthly"
@@ -57,34 +60,41 @@
                 android:layout_height="wrap_content"
                 android:onClick="graphMonthly"
                 android:text="Monthly"
-                android:textSize="20sp" />
+                android:textColor="@color/col_btn_green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
         </RadioGroup>
 
         <LinearLayout
             android:id="@+id/llOptionsChildStack"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rdTimespans"
             android:layout_margin="10dp"
+            android:layout_toRightOf="@+id/rdTimespans"
             android:orientation="vertical" >
-
+
             <Spinner
                 android:id="@+id/cbMonths"
                 style="@style/SpinnerAsEditText"
-                android:layout_width="fill_parent"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/graphLayout"
                 android:layout_alignTop="@+id/rdTimespans"
                 android:entries="@array/strMonths" />
-
+
             <Spinner
                 android:id="@+id/cbYears"
                 style="@style/SpinnerAsEditText"
-                android:layout_width="fill_parent"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/cbMonths"
                 android:layout_below="@+id/cbMonths"
                 android:entries="@array/strYears" />
+
         </LinearLayout>
-    </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>
