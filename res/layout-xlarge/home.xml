@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relLayout_Home"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/col_white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home_xlarge" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_margin="10dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="225dp"
+                    android:layout_width="230dp"
+                    android:layout_height="300dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/about" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+					android:maxWidth="225dp"
+                    android:layout_width="230dp"
+                    android:layout_height="300dp"
+                    android:layout_margin="10dp"
+                    android:adjustViewBounds="true"
+                    android:onClick="onClick_PIN"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/download" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_margin="10dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="225dp"
+                    android:layout_width="230dp"
+                    android:layout_height="300dp"
+                    android:onClick="onClick_Budget"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/budget" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+				    android:maxWidth="225dp"
+                    android:layout_width="230dp"
+                    android:layout_height="300dp"
+                    android:layout_margin="10dp"
+                    android:adjustViewBounds="true"
+                    android:onClick="onClick_Chart"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/graph" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
