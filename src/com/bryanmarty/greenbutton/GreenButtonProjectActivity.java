@@ -29,7 +29,13 @@ public class GreenButtonProjectActivity extends Activity {
 	    vib_ = (Vibrator) this.getSystemService("vibrator");
 
 	}
-
+	public void onClick_About(View v)
+	{
+	    vib_.vibrate(75);
+		Intent intent = new Intent();
+	    intent.setClass(this,GreenButtonAboutActivity.class);
+	    startActivity(intent);
+	}
 	public void onClick_PIN(View v)
 	{
 	    vib_.vibrate(75);
