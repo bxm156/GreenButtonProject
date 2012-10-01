@@ -28,6 +28,9 @@
         <activity android:name="GreenButtonBudgetActivity" android:label="Budget">
             
         </activity>
+        <activity android:name="GreenButtonAboutActivity" android:label="About">
+            
+        </activity>
     </application>
 
 </manifest>

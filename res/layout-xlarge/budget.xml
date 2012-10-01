@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/budget_xlarge" >
+
+    <ImageView
+        android:id="@+id/imMeter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/llTxtParentContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:adjustViewBounds="true"
+        android:maxHeight="305dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/budget_meter_5_hdpi" />
+
+    <LinearLayout
+        android:id="@+id/llTxtParentContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/llTxtStatic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtDaysRemaining"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:gravity="center_horizontal"
+                android:text="30 days left in July"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/col_main"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/txtPercentEnergyUsed"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="50% Energy Used"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/col_main"
+                android:textSize="25sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
