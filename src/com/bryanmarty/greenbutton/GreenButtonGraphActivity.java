@@ -253,7 +253,7 @@ public class GreenButtonGraphActivity extends Activity {
 		}
 		
 		// init example series data
-		GraphViewSeries valueSeries = new GraphViewSeries("Energy Usage History", Color.WHITE, valuePoints);
+		GraphViewSeries valueSeries = new GraphViewSeries("Energy Usage History", Color.rgb(166, 206, 58), valuePoints);
 		GraphViewSeries costSeries = new GraphViewSeries(costPoints);
 		
 		GraphView graphView = new BarGraphView(this, "kWh vs. Time")  {
@@ -262,7 +262,7 @@ public class GreenButtonGraphActivity extends Activity {
 			 protected String formatLabel(double value, boolean isValueX) {  
 					if (isValueX) {  
 						if(isMonthlySelected) {
-							return monthList[(int) value];
+							return monthList[(int) (value % 12 + 12) % 12];
 						} else {
 							return String.valueOf((int) value);
 						}
@@ -278,7 +278,7 @@ public class GreenButtonGraphActivity extends Activity {
 		}
 		graphView.setViewPort(1, 10);
 		graphView.setScrollable(true);
-		graphView.setBackgroundColor(R.color.col_btn_green);
+		graphView.setBackgroundColor(Color.WHITE);
 		//graphView.addSeries(costSeries);
 		graphView.addSeries(valueSeries);
 		layout.addView(graphView);
