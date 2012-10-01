@@ -278,7 +278,7 @@ public class GreenButtonGraphActivity extends Activity {
 		}
 		graphView.setViewPort(1, 10);
 		graphView.setScrollable(true);
-		
+		graphView.setBackgroundColor(R.color.col_btn_green);
 		//graphView.addSeries(costSeries);
 		graphView.addSeries(valueSeries);
 		layout.addView(graphView);
