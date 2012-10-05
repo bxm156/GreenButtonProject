@@ -19,9 +19,16 @@ import android.widget.TextView;
 
 public class GreenButtonBudgetActivity extends Activity {
 
+	static String[] monthsInYear = {	"January", "Febuary", "March","April", "May", "June",
+							   			"July", "August", "September", "October", "November", "December"};
+	
+	
 	protected int lastMonthUsage = 0;
 	protected int currentMonthUsage = 0;
 	protected int currentDayOfMonth = 0;
+	
+	protected int mostRecentMonth = 0;
+	protected int mostRecentYear = 2011;
 	
 	protected boolean needsToUpdateGBData = false;
 	
@@ -87,6 +94,8 @@ public class GreenButtonBudgetActivity extends Activity {
 		c.set(Calendar.HOUR_OF_DAY, 0);
 		c.set(Calendar.MINUTE, 0);
 		dateStartThisMonth = c.getTime();
+		mostRecentMonth = c.get(Calendar.MONTH);
+		mostRecentYear = c.get(Calendar.YEAR);
 		
 		c.roll(Calendar.MONTH, -1);
 		dateStartLastMonth = c.getTime();
@@ -137,7 +146,10 @@ public class GreenButtonBudgetActivity extends Activity {
 		if(needsToUpdateGBData)
 		{
 			txtEnergyUsed.setTypeface(null, Typeface.ITALIC);
-			txtEnergyUsed.setText("No GB Data available this month, please add current data first.");
+			txtEnergyUsed.setTextSize(20f);
+			txtEnergyUsed.setText("The most recent data is from " 
+									+ monthsInYear[mostRecentMonth] 
+									+ " " + mostRecentYear + " . Please download new data.");
 		}
 		else
 		{
