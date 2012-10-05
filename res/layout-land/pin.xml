@@ -5,24 +5,13 @@
     android:layout_height="fill_parent"
     android:background="@drawable/download_xlarge_h"
     android:orientation="vertical" >
-
-    <Button
-        android:id="@+id/btnGetGBData"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dip"
-        android:onClick="getGBData"
-        android:text="@string/go" />
-
+
     <ProgressBar
         android:id="@+id/gbDownloadProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:layout_toRightOf="@+id/btnGetGBData"
         android:visibility="invisible" />
 
     <ImageView

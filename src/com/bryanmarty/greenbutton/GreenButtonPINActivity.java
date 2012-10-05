@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
+import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -22,7 +23,6 @@ import android.widget.Toast;
 public class GreenButtonPINActivity extends Activity implements GBDataDownloaderListener {
 
 	private EditText txtGBData;
-	private Button btnGetGBData;
 	private ProgressBar pbGBDownloadProgress;
 	
 	/** Called when the activity is first created. */	
@@ -32,8 +32,19 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
         setContentView(R.layout.pin);
         TrackManager.initialize(this.getApplicationContext());
         
-        //txtGBData = (EditText)this.findViewById(R.id.txtGBDataResponse);
-        btnGetGBData = (Button)this.findViewById(R.id.btnGetGBData);
+        EditText txtPin = (EditText)this.findViewById(R.id.txtPIN_Entry);
+        txtPin.setOnKeyListener(new OnKeyListener() {
+            public boolean onKey(View view, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    //onClick(view);
+                	getGBData(view);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+        
         pbGBDownloadProgress = (ProgressBar)this.findViewById(R.id.gbDownloadProgress);
     }
     
@@ -52,7 +63,7 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
 
 	@Override
 	public void onPreExecute() {
-		btnGetGBData.setEnabled(false);
+		//btnGetGBData.setEnabled(false);
 		pbGBDownloadProgress.setVisibility(View.VISIBLE);
 		
 	}
@@ -65,7 +76,6 @@ public class GreenButtonPINActivity extends Activity implements GBDataDownloader
 	@Override
 	public void onPostExecute(Integer result) {
 		Log.i("Inserted Records: ",String.valueOf(result));
-    	btnGetGBData.setEnabled(true);
     	pbGBDownloadProgress.setVisibility(View.GONE);
     	onBackPressed();
     	

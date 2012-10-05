@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llResizer"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/download_xlarge"
+    android:gravity="bottom"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btnGetGBData"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dip"
-        android:onClick="getGBData"
-        android:text="@string/go" />
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/download_xlarge"
+        android:orientation="vertical" >
 
-    <ProgressBar
-        android:id="@+id/gbDownloadProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:layout_toRightOf="@+id/btnGetGBData"
-        android:visibility="invisible" />
+        <ProgressBar
+            android:id="@+id/gbDownloadProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:visibility="invisible" />
+
+        <RelativeLayout
+            android:id="@+id/relLay2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/gbDownloadProgress"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/upload_box" />
-
-    <EditText
-        android:id="@+id/txtPIN_Entry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@null"
-        android:ems="10"
-        android:gravity="center"
-        android:imeOptions="actionGo"
-        android:padding="20dip"
-        android:singleLine="true"
-        android:textColor="@color/col_white"
-        android:textSize="35sp" >
+            
 
-        <requestFocus />
-    </EditText>
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/upload_box" />
+            
+            <EditText 
+                android:id="@+id/txtPIN_Entry" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content" 
+                android:layout_centerHorizontal="true" 
+                android:layout_centerVertical="true" 
+                android:background="@null" 
+                android:ems="10" 
+                android:gravity="center" 
+                android:imeOptions="actionGo" 
+                android:singleLine="true" 
+                android:text="" 
+                android:textColor="@color/col_white" 
+                android:textSize="30sp">
+            </EditText>
 
-</RelativeLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
