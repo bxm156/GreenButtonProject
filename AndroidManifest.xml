@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bryanmarty.greenbutton"
     android:versionCode="2"
-    android:versionName="1.1" >
+    android:versionName="2.0" >
 
     <uses-sdk android:minSdkVersion="7" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -19,8 +19,7 @@
 	        	<category android:name="android.intent.category.LAUNCHER" />
 	    	</intent-filter>
         </activity>
-        <activity android:name=".GreenButtonGraphActivity" android:label="Graph" 
-            	  >
+        <activity android:name=".GreenButtonGraphActivity" android:label="Graph">
             
         </activity>
         <activity android:name=".GreenButtonPINActivity" android:label="PIN"
