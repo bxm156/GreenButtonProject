@@ -7,7 +7,8 @@
     <string name="changelog_title">How to Use BIY</string>
     <string name="changelog_ok_button">OK</string>
     <string name="changelog_show_full">More...</string>
-    
+    <string name="about_info">Budget It Yourself uses Green Button data to help you budget your daily energy usage. For more information, visit</string>
+    <string name="primary_url">http://www.budgetityourself.com.</string>
     <string name="app_name">BIY</string>
     <string name="copyright">\u00A9 2012 Budget It Yourself</string>
     <string name="go">Go</string>
