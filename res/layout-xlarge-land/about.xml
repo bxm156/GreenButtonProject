@@ -32,17 +32,16 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             />
-
-        
+
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textAboutLink"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="20dp"
             android:gravity="center"
-            android:textColor="@color/col_main"
+            android:padding="20dp"
             android:text="@string/primary_url"
+            android:textColor="@color/col_main"
             android:textSize="40sp" />
 
         <ImageView

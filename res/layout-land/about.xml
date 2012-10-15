@@ -14,7 +14,7 @@
     android:background="@color/col_white"
     android:gravity="center"
     android:orientation="vertical" >
-
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
@@ -27,10 +27,10 @@
         android:paddingTop="20dp"
         android:text="@string/about_info"
         android:textColor="@color/col_main"
-        android:textSize="15sp" />
-
+        android:textSize="20sp" />
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textAboutLink"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
